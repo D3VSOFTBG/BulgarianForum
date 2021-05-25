@@ -1,0 +1,20 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: black;
+    color: white;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: gray;
+}
+table,td,th{
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+td{
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    background-color: gray;
+}
