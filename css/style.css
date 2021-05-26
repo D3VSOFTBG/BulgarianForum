@@ -27,3 +27,6 @@ a{
 a:hover{
     color: darkred;
 }
+.text-center{
+    text-align: center;
+}
