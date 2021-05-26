@@ -7,7 +7,7 @@ table{
     margin-left: auto;
     margin-right: auto;
     background-color: gray;
-    width: 90%;
+    width: 70%;
 }
 table,td,th{
     border: 1px solid white;
@@ -19,4 +19,11 @@ td{
 }
 th{
     padding: 15px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a:hover{
+    color: darkred;
 }
