@@ -30,3 +30,12 @@ a:hover{
 .text-center{
     text-align: center;
 }
+button{
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    border-radius: 5%;
+    font-size: 20px;
+}

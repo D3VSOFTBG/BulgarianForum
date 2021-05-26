@@ -5,9 +5,14 @@ include_once("config.php");
     <head>
         <title><?php echo $title; ?></title>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" type="image/png" href="logo.png">
     </head>
     <body>
         <h1 style="text-align:center;"><?php echo $title; ?></h1>
+        <div class="text-center" style="padding: 15px;">
+            <a href="#"><button>Register</button></a>
+            <a href="#"><button>Login</button></a>
+        </div>
         <div style="overflow-x:auto;">
             <table>
                 <tr>
