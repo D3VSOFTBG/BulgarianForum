@@ -12,18 +12,19 @@ include_once("config.php");
         <table>
             <tr>
                 <!--Forum Name-->
-                <th colspan="3">
-                    <p style="font-size: 50px;">Име на форум</p>
+                <th colspan="4">
+                    <p style="font-size: 25px;">Име на форум</p>
                 </th>
             </tr>
             <tr>
                 <!--New posts-->
                 <td>X</td>
                 <!--Category (Name/Description)-->
-                <td><p><strong>Име на категория</strong></p><p style="font-size: 10px;">Описание на категория</p></td>
+                <td><p><strong><a href="#">Име на категория</a></strong></p></td>
                 <!--Statistics (Topics/Posts)-->
-                <td><p style="font-size: 10px;">Теми:&nbsp;<strong>1</strong></p><p style="font-size: 10px;">Публикации:&nbsp;<strong>1</strong></p></td>
+                <td><p>Теми:&nbsp;<strong>1</strong></p></td>
+                <td><p>Публикации:&nbsp;<strong>1</strong></p></td>
         </table>
-</div>
+        </div>
     </body>
 </html>

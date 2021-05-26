@@ -7,14 +7,16 @@ table{
     margin-left: auto;
     margin-right: auto;
     background-color: gray;
+    width: 90%;
 }
 table,td,th{
     border: 1px solid white;
     border-collapse: collapse;
 }
 td{
+    padding: 15px;
     text-align: center;
-    width: fit-content;
-    height: fit-content;
-    background-color: gray;
+}
+th{
+    padding: 15px;
 }
