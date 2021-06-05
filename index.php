@@ -1,18 +1,15 @@
 <?php
-include_once("include/config.php");
-?>
-<?php
 include_once("include/header.php");
 ?>
 <h1 style="text-align:center;"><?php echo $title; ?></h1>
-<div class="text-center" style="padding: 15px;">
-    <a href="auth/register.html"><button>Регистрация</button></a>
-    <a href="auth/login.html"><button>Вход</button></a>
-    <div style="padding: 15px;">
-        <input type="search" placeholder="Търси" style="padding: 10px;" />
-        <a href="#"><button>Търси</button></a>
-    </div>
-</div>
+
+<nav>
+    <a href="auth/register.html">Регистрация</a>
+    <a href="auth/login.html">Вход</a>
+    <a href="#">Търси</a>
+    <img src="<?php echo $url; ?>/assets/images/menu.png" alt="" srcset="">
+</nav>
+<!--<input type="search" placeholder="Търси" style="padding: 10px;" />-->
 <div style="overflow-x:auto;">
     <table>
         <tr>
