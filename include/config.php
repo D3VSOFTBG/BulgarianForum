@@ -1,4 +1,4 @@
 <?php
 $title = "BulgarianForum";
-//$url = ""
+$url = "http://localhost/BulgarianForum"
 ?>

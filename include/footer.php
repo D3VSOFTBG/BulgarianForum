@@ -3,7 +3,7 @@
         <p style="color: gray;" class="text-center">Текущо време: (<strong id="time"></strong>)</p>
     </footer>
     <!--JavaScript-->
-    <script src="js/time.js"></script>
+    <script src="<?php echo $url; ?>/assets/js/time.js"></script>
 </body>
 
 </html>
