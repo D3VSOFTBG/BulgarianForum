@@ -15,7 +15,7 @@ include_once("include/header.php");
         <tr>
             <!--Forum Name-->
             <th colspan="3">
-                <p style="font-size: 25px;">Име на форум</p>
+                <p style="font-size:25px;">Име на форум</p>
             </th>
             <th>
                 <p><a href="#">[-]</a></p>
