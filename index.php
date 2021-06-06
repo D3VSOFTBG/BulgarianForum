@@ -7,10 +7,9 @@ include_once("include/header.php");
     <a href="javascript:void(0);" class="icon" onclick="nav()">
         <img src="<?php echo $url; ?>/assets/images/nav.png" />&nbsp;НАВИГАЦИЯ
     </a>
-    <a href="#home">Home</a>
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
+    <a href="auth/register.html">Регистрация</a>
+    <a href="auth/login.html">Вход</a>
+    <a href="#">Търси</a>
 </nav>
 <!--<input type="search" placeholder="Търси" style="padding: 10px;" />-->
 <div style="overflow-x:auto;">
