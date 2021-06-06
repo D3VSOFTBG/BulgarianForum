@@ -1,7 +1,7 @@
 <?php
 include_once("include/header.php");
 ?>
-<h1 style="text-align:center;"><?php echo $title; ?></h1>
+<h1 class="text-center"><?php echo $title; ?></h1>
 
 <nav class="topnav" id="myTopnav">
     <a href="javascript:void(0);" class="icon" onclick="nav()">
