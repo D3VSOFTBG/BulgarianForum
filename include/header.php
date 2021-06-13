@@ -9,6 +9,7 @@ include_once("config.php")
     <link rel="icon" type="image/png" href="<?php echo $url; ?>/assets/images/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?php echo $title; ?>">
+    <meta name="keywords" content="<?php echo $title; ?>">
 </head>
 
 <body>

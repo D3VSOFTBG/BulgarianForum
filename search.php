@@ -1,11 +1,10 @@
 <?php
 include_once("include/header.php");
 ?>
-<h1 class="text-center"><?php echo $title; ?></h1>
 <table>
     <tr>
         <td>
-            <p class="text-center">Search</p>
+            <label>Search</label>
             <input type="text" />
             <br/>
             <button>Search</button>
