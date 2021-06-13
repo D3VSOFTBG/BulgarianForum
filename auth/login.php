@@ -16,7 +16,7 @@ include_once("../include/header.php");
                 <br />
                 <div class="text-center">
                     <button type="submit">Вход</button>
-                    <p>Отиди към (<a href="/">Начална страница</a>).</p>
+                    <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>
                 </div>
             </form>
         </td>
