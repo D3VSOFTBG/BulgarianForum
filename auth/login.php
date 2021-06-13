@@ -1,10 +1,10 @@
 <?php
 include_once("../include/header.php");
 ?>
-<table class="table-center">
+<table>
     <tr>
         <td>
-            <form action="../auth/register.php" method="POST">
+            <form method="POST">
                 <h1>Вход</h1>
                 <label for="username">Потребителско име</label>
                 <br />

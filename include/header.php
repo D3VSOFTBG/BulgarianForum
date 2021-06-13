@@ -8,6 +8,7 @@ include_once("config.php")
     <link rel="stylesheet" href="<?php echo $url; ?>/assets/css/style.css">
     <link rel="icon" type="image/png" href="<?php echo $url; ?>/assets/images/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<?php echo $title; ?>">
 </head>
 
 <body>
@@ -17,7 +18,8 @@ include_once("config.php")
     <a href="javascript:void(0);" class="icon" onclick="nav()">
         <img src="<?php echo $url; ?>/assets/images/nav.png" />&nbsp;НАВИГАЦИЯ
     </a>
-    <a href="auth/register.html">Регистрация</a>
-    <a href="auth/login.html">Вход</a>
+    <a href="<?php echo $url; ?>">Начало</a>
+    <a href="<?php echo $url; ?>/auth/register.php">Регистрация</a>
+    <a href="<?php echo $url; ?>/auth/login.php">Вход</a>
     <a href="#">Търси</a>
 </nav>
