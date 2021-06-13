@@ -4,8 +4,7 @@ include_once("include/header.php");
 <table>
     <tr>
         <td>
-            <label>Търси</label>
-            <br />
+            <h1>Търси</h1>
             <input type="text" placeholder="Търси" />
             <br />
             <button>Търси</button>
