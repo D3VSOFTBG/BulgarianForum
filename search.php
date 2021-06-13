@@ -4,15 +4,14 @@ include_once("include/header.php");
 <table>
     <tr>
         <td>
-            <label>Search</label>
-            <input type="text" />
-            <br/>
-            <button>Search</button>
+            <label>Търси</label>
+            <br />
+            <input type="text" placeholder="Търси" />
+            <br />
+            <button>Търси</button>
         </td>
     </tr>
 </table>
-
-
 <?php
 include_once("include/footer.php");
 ?>

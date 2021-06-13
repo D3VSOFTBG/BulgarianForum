@@ -13,14 +13,14 @@ include_once("config.php")
 </head>
 
 <body>
-<h1 class="text-center"><?php echo $title; ?></h1>
+    <h1 class="text-center"><?php echo $title; ?></h1>
 
-<nav class="topnav" id="myTopnav">
-    <a href="javascript:void(0);" class="icon" onclick="nav()">
-        <img src="<?php echo $url; ?>/assets/images/nav.png" />&nbsp;НАВИГАЦИЯ
-    </a>
-    <a href="<?php echo $url; ?>">Начало</a>
-    <a href="<?php echo $url; ?>/auth/register.php">Регистрация</a>
-    <a href="<?php echo $url; ?>/auth/login.php">Вход</a>
-    <a href="#">Търси</a>
-</nav>
+    <nav class="topnav" id="myTopnav">
+        <a href="javascript:void(0);" class="icon" onclick="nav()">
+            <img src="<?php echo $url; ?>/assets/images/nav.png" />&nbsp;НАВИГАЦИЯ
+        </a>
+        <a href="<?php echo $url; ?>">Начало</a>
+        <a href="<?php echo $url; ?>/auth/register.php">Регистрация</a>
+        <a href="<?php echo $url; ?>/auth/login.php">Вход</a>
+        <a href="<?php echo $url; ?>/search.php">Търси</a>
+    </nav>
