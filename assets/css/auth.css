@@ -3,13 +3,6 @@ body{
     background-color: black;
     color: white;
 }
-.vertical-center{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .table-center{
     margin-left: auto;
     margin-right: auto;

@@ -1,17 +1,6 @@
 <?php
 include_once("include/header.php");
 ?>
-<h1 class="text-center"><?php echo $title; ?></h1>
-
-<nav class="topnav" id="myTopnav">
-    <a href="javascript:void(0);" class="icon" onclick="nav()">
-        <img src="<?php echo $url; ?>/assets/images/nav.png" />&nbsp;НАВИГАЦИЯ
-    </a>
-    <a href="auth/register.html">Регистрация</a>
-    <a href="auth/login.html">Вход</a>
-    <a href="#">Търси</a>
-</nav>
-<!--<input type="search" placeholder="Търси" style="padding: 10px;" />-->
 <div style="overflow-x:auto;">
     <table>
         <tr>
