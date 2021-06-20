@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <table>
     <tr>
         <td>
-            <form method="POST">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                 <h1>Регистрация</h1>
                 <label for="username">Потребителско име</label>
                 <br />
