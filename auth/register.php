@@ -1,5 +1,19 @@
 <?php
 include_once("../include/header.php");
+// Include database file
+require_once("../include/db.php");
+
+// Define variables and initialize with empty values
+$username = $password = $confirm_password = "";
+$username_err = $password_err = $confirm_password_err = "";
+
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Validate username
+    if(empty(trim($_POST['username']))){
+        $username_err = "Моля, въведете потребителско име.";
+    }
+}
 ?>
 <table>
     <tr>
