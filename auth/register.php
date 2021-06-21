@@ -12,6 +12,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate username
     if(empty(trim($_POST['username']))){
         $username_err = "Моля, въведете потребителско име.";
+    }elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
+        $username_err = "Потребителското име единствено може да съдържа букви, цифри и долни черти.";
+    }else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM users WHERE username = :username";
+        
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_username = trim($_POST["username"]);
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                if($stmt->rowCount() == 1){
+                    $username_err = "Това потребителско име вече съществува.";
+                }else{
+                    $username = trim($_POST["username"]);
+                }
+            }else{
+                echo "Грешка, моля опитайте след по късно.";
+            }
+            //Close statement
+            unset($stmt);
+        }
+    }
+    // Validate password
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Моля, напишете парола";
     }
 }
 ?>
