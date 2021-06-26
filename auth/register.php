@@ -4,8 +4,8 @@ include_once("../include/header.php");
 require_once("../include/db.php");
 
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username = $email = $password = $confirm_password = "";
+$username_err = $email_err = $password_err = $confirm_password_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -21,10 +21,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-
             // Set parameters
             $param_username = trim($_POST["username"]);
-
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
@@ -33,38 +31,114 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $username = trim($_POST["username"]);
                 }
             }else{
-                echo "Грешка, моля опитайте след по късно.";
+                echo "Грешка, моля опитайте по късно.";
             }
-            //Close statement
+            // Close statement
+            unset($stmt);
+        }
+    }
+    // Validate email
+    if(empty(trim($_POST["email"]))){
+        $email_err = "Моля, въведете имейл.";
+    }elseif(){
+    }else{
+        $sql = "SELECT id FROM users WHERE email = :email";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            // Set parameters
+            $param_email = trim($_POST["email"]);
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                if($stmt->rowCount() == 1){
+                    $email_err = "Този имейл адрес вече съществува.";
+                }else{
+                    $email = trim($_POST["email"]);
+                }
+            }else{
+                echo "Грешка, моля опитайте по късно.";
+            }
+            // Close statement
             unset($stmt);
         }
     }
     // Validate password
     if(empty(trim($_POST["password"]))){
-        $password_err = "Моля, напишете парола";
+        $password_err = "Моля, въведете парола.";
+    }elseif(strlen(trim($_POST["password"])) < 8){
+        $password_err = "Паролата трябва да е поне 8 знаци.";
+    }else{
+        $password = trim($_POST["password"]);
     }
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Моля, потвърдете паролата.";
+    }else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Паролата не съвпада.";
+        }
+    }
+
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+        // Prepare an insert statement
+        $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+            $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+            // Set parameters
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                header("location: $url/auth/login.php");
+            }else{
+                echo "Грешка, моля опитайте по късно.";
+            }
+            // Close statement
+            unset($stmt);
+        }
+    }
+    // Close connection
+    unset($pdo);
 }
 ?>
 <table>
     <tr>
         <td>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <h1>Регистрация</h1>
                 <label for="username">Потребителско име</label>
+                <?php if(!empty($username_err)){
+                    echo '<br /><span style="color: red;">'.$username_err.'</span>';
+                } ?>
                 <br />
                 <input name="username" id="username" type="text" placeholder="Потребителско име" />
                 <br />
                 <label for="email">Имейл</label>
+                <?php if(!empty($email_err)){
+                    echo '<br /><span style="color: red;">'.$email_err.'</span>';
+                } ?>
                 <br />
                 <input name="email" id="email" type="email" placeholder="Имейл" />
                 <br />
                 <label for="password">Парола</label>
+                <?php if(!empty($password_err)){
+                    echo '<br /><span style="color: red;">'.$password_err.'</span>';
+                } ?>
                 <br />
                 <input name="password" id="password" type="password" placeholder="Парола" />
                 <br />
-                <label for="password2">Потвърдете паролата</label>
+                <label for="confirm_password">Потвърдете паролата</label>
+                <?php if(!empty($confirm_password_err)){
+                    echo '<br /><span style="color: red;">'.$confirm_password_err.'</span>';
+                } ?>
                 <br />
-                <input name="password2" id="password2" type="password" placeholder="Потвърдете паролата" />
+                <input name="confirm_password" id="confirm_password" type="password" placeholder="Потвърдете паролата" />
                 <br />
                 <div class="text-center">
                     <button type="submit">Регистрация</button>
