@@ -1,8 +1,8 @@
 <?php
 define('DB_SERVER','localhost');
+define('DB_NAME','bulgarianforum');
 define('DB_USERNAME','bulgarianforum');
 define('DB_PASSWORD','bulgarianforum');
-define('DB_NAME','bulgarianforum');
 
 try{
     $pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
