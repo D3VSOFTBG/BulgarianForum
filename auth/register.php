@@ -14,6 +14,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username_err = "Моля, въведете потребителско име.";
     }elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
         $username_err = "Потребителското име единствено може да съдържа букви, цифри и долни черти.";
+    }elseif(strlen($_POST['username']) <= 5 || strlen($_POST['username'] >= 50)){
+        $username_err = "Дължината на потребителското име трябва да е най-малко 5, а най-много 50 знаци";
     }else{
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE username = :username";
