@@ -75,6 +75,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password_err = "Паролата трябва да е поне 8 знаци.";
     }elseif(strlen(trim($_POST["password"])) >= 255){
         $password_err = "Максималната дължина на паролата трябва да е 255 знаци.";
+    }elseif(!preg_match('/[\d]/', trim($_POST['password']))){
+        $password_err = "Вашата парола трябва да съдържа поне една цифра.";
     }else{
         $password = trim($_POST["password"]);
     }
