@@ -1,4 +1,5 @@
 <?php
+include_once("../include/header.php");
 
 // if(empty("")){
 //     echo "yes";

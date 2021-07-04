@@ -1,5 +1,7 @@
 <?php
+// Include header file
 include_once("../include/header.php");
+
 // Include database file
 require_once("../include/db.php");
 
@@ -10,13 +12,13 @@ $username_err = $email_err = $password_err = $confirm_password_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate username
-    if(empty(trim($_POST['username']))){
-        $username_err = "Моля, въведете потребителско име.";
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Моля въведете потребителско име.";
     }elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
         $username_err = "Потребителското име единствено може да съдържа букви, цифри и долни черти.";
-    }elseif(strlen(trim($_POST['username'])) <= 5){
+    }elseif(strlen(trim($_POST["username"])) <= 5){
         $username_err = "Дължината на потребителското име трябва да е най-малко 5 знаци.";
-    }elseif(strlen(trim($_POST['username'])) >= 50){
+    }elseif(strlen(trim($_POST["username"])) >= 50){
         $username_err = "Дължината на потребителското име трябва да е най-много 50 знаци.";
     }else{
         // Prepare a select statement
@@ -25,8 +27,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+
             // Set parameters
             $param_username = trim($_POST["username"]);
+
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
@@ -43,17 +47,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     // Validate email
     if(empty(trim($_POST["email"]))){
-        $email_err = "Моля, въведете имейл адрес.";
+        $email_err = "Моля въведете имейл адрес.";
     }elseif(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
-        $email_err = "Моля, въведете правилен имейл адрес.";
+        $email_err = "Моля въведете правилен имейл адрес.";
     }else{
         $sql = "SELECT id FROM users WHERE email = :email";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+
             // Set parameters
             $param_email = trim($_POST["email"]);
+
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
@@ -70,19 +76,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     // Validate password
     if(empty(trim($_POST["password"]))){
-        $password_err = "Моля, въведете парола.";
+        $password_err = "Моля въведете парола.";
     }elseif(strlen(trim($_POST["password"])) <= 8){
         $password_err = "Паролата трябва да е поне 8 знаци.";
     }elseif(strlen(trim($_POST["password"])) >= 255){
         $password_err = "Максималната дължина на паролата трябва да е 255 знаци.";
-    }elseif(!preg_match('/[\d]/', trim($_POST['password']))){
+    }elseif(!preg_match('/[\d]/', trim($_POST["password"]))){
         $password_err = "Вашата парола трябва да съдържа поне една цифра.";
     }else{
         $password = trim($_POST["password"]);
     }
     // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Моля, потвърдете паролата.";
+        $confirm_password_err = "Моля потвърдете паролата.";
     }else{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($password_err) && ($password != $confirm_password)){
@@ -101,11 +107,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
             $stmt->bindParam(":created_at", $param_created_at, PDO::PARAM_STR);
+
             // Set parameters
             $param_username = $username;
             $param_email = $email;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             $param_created_at = date("Y-m-d");
+
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 header("location: $url/auth/login.php");

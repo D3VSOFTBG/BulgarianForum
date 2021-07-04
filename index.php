@@ -1,4 +1,5 @@
 <?php
+// Include header file
 include_once("include/header.php");
 ?>
 <div style="overflow-x:auto;">
