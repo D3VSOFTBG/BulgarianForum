@@ -130,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
                 ?>
                 <br />
-                <input name="captcha" id="captcha" type="text" placeholder="Моля решете задачата" />
+                <input name="captcha" id="captcha" type="number" placeholder="Моля решете задачата" />
                 <div class="text-center">
                     <button type="submit">Вход</button>
                     <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>
