@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Validate password
             if(empty(trim($_POST["password"]))){
                 $password_err = "Моля въведете парола.";
-            }elseif(strlen(trim($_POST["password"])) <= 8){
+            }elseif(strlen(trim($_POST["password"])) < 8){
                 $password_err = "Паролата трябва да е поне 8 знаци.";
             }elseif(strlen(trim($_POST["password"])) >= 255){
                 $password_err = "Максималната дължина на паролата трябва да е 255 знаци.";
