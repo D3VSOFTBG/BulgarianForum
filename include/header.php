@@ -1,5 +1,6 @@
 <?php
-include_once("config.php")
+# Include config file
+include_once("config.php");
 ?>
 <html>
 
