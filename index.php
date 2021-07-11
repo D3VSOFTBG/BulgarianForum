@@ -5,7 +5,16 @@ session_start();
 // Include header file
 include_once("include/header.php");
 ?>
-<div style="overflow-x:auto;">
+
+<?php
+if(empty($_SESSION["username"])){
+    echo '<p style="text-align: center;">Моля влез или се регистрирай!</p>';
+}else{
+    echo '<p style="text-align: center;">Здравей <strong>' . $_SESSION["username"] . '</strong>.</p>';
+}
+?>
+
+<div style="overflow-x: auto;">
     <table>
         <tr>
             <!--Forum Name-->
