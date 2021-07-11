@@ -8,9 +8,9 @@ include_once("include/header.php");
 
 <?php
 if(empty($_SESSION["username"])){
-    echo '<p style="text-align: center;">Моля влез или се регистрирай!</p>';
+    echo '<p class="text-center">Моля влез или се регистрирай!</p>';
 }else{
-    echo '<p style="text-align: center;">Здравей <strong>' . $_SESSION["username"] . '</strong>.</p>';
+    echo '<p class="text-center">Здравей <strong>' . $_SESSION["username"] . '</strong>.</p>';
 }
 ?>
 
