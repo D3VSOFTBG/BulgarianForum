@@ -1,4 +1,7 @@
 <?php
+// Initialize the session
+session_start();
+
 // Include header file
 include_once("include/header.php");
 ?>

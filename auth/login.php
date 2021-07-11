@@ -1,12 +1,12 @@
 <?php
+// Initialize the session
+session_start();
+
 // CAPTCHA
 require_once("captcha.php");
 
 // Include header file
 include_once("../include/header.php");
-
-// Initialize the session
-session_start();
 
 // Check if the user is already logged in, if yes then redirect people to index page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
