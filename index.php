@@ -10,10 +10,10 @@ include_once("include/header.php");
         <tr>
             <!--Forum Name-->
             <th colspan="3">
-                <p style="font-size:25px;">Име на форум</p>
+                <h1>Име на форум</h1>
             </th>
             <th>
-                <p><a href="#">[-]</a></p>
+                <h1><a href="#">[-]</a></h1>
             </th>
         </tr>
         <tr>
