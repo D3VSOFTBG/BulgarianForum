@@ -107,3 +107,13 @@ input{
     margin: 10px 0;
     padding: 15px;
 }
+.alert{
+    background-color: darkslategray;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+}

@@ -7,9 +7,9 @@ include_once("include/header.php");
 
 // Check if username's session is empty
 if(empty($_SESSION["username"])){
-    echo '<p class="text-center">Моля влез или се регистрирай!</p>';
+    echo '<p class="text-center alert">Моля влез или се регистрирай!</p>';
 }else{
-    echo '<p class="text-center">Здравей <strong>' . $_SESSION["username"] . '</strong>.</p>';
+    echo '<p class="text-center alert">Здравей <strong>' . $_SESSION["username"] . '</strong>.</p>';
 }
 ?>
 
