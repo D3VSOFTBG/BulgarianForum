@@ -96,9 +96,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 ?>
-<?php
-if(empty($_SESSION["id"])){
-?>
 <table>
     <tr>
         <td>
@@ -143,10 +140,6 @@ if(empty($_SESSION["id"])){
         </td>
     </tr>
 </table>
-<?php
-}
-?>
-
 <?php
 include_once("../include/footer.php");
 ?>
