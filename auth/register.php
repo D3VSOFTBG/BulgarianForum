@@ -1,12 +1,15 @@
 <?php
+// Initialize the session
+session_start();
+
 // CAPTCHA
 require_once("captcha.php");
 
-// Include header file
-include_once("../include/header.php");
-
 // Include database file
 require_once("../include/db.php");
+
+// Include header file
+include_once("../include/header.php");
 
 // Define variables and initialize with empty values
 $username = $email = $password = $confirm_password = $captcha = "";
@@ -138,8 +141,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $captcha_err = "Грешен отговор, моля опитайте отново.";
         }
     }
-}
-        
+}        
+?>
+<?php
+if(empty($_SESSION["id"])){
 ?>
 <table>
     <tr>
@@ -198,6 +203,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </td>
     </tr>
 </table>
+<?php
+}
+?>
 <?php
 include_once("../include/footer.php");
 ?>

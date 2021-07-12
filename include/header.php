@@ -22,7 +22,11 @@ include_once("config.php");
             <img src="<?php echo $url; ?>/assets/images/nav.png" />&nbsp;НАВИГАЦИЯ
         </a>
         <a href="<?php echo $url; ?>">Начало</a>
-        <a href="<?php echo $url; ?>/auth/register.php">Регистрация</a>
-        <a href="<?php echo $url; ?>/auth/login.php">Вход</a>
+        <?php
+        if(empty($_SESSION["id"])){
+            echo "<a href='$url/auth/register.php'>Регистрация</a>";
+            echo "<a href='$url/auth/login.php'>Вход</a>";
+        }
+        ?>
         <a href="<?php echo $url; ?>/search.php">Търси</a>
     </nav>

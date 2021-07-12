@@ -5,6 +5,9 @@ session_start();
 // CAPTCHA
 require_once("captcha.php");
 
+// Include database file
+require_once("../include/db.php");
+
 // Include header file
 include_once("../include/header.php");
 
@@ -13,8 +16,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: ../index.php");
     exit;
 }
-// Include database file
-require_once("../include/db.php");
 
 // Define variables and initialize with empty values
 $username = $password = $captcha = "";
@@ -95,6 +96,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 ?>
+<?php
+if(empty($_SESSION["id"])){
+?>
 <table>
     <tr>
         <td>
@@ -139,6 +143,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </td>
     </tr>
 </table>
+<?php
+}
+?>
+
 <?php
 include_once("../include/footer.php");
 ?>
