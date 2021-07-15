@@ -1,5 +1,5 @@
 <?php
-include_once("include/header.php");
+include_once("../include/header.php");
 ?>
 <table>
     <tr>
@@ -12,5 +12,5 @@ include_once("include/header.php");
     </tr>
 </table>
 <?php
-include_once("include/footer.php");
+include_once("../include/footer.php");
 ?>

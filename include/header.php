@@ -26,7 +26,9 @@ include_once("config.php");
         if(empty($_SESSION["id"])){
             echo "<a href='$url/auth/register.php'>Регистрация</a>";
             echo "<a href='$url/auth/login.php'>Вход</a>";
+        }else{
+            echo "<a href='$url/pages/settings.php'>Настройки</a>";
         }
         ?>
-        <a href="<?php echo $url; ?>/search.php">Търси</a>
+        <a href="<?php echo $url; ?>/pages/search.php">Търси</a>
     </nav>
