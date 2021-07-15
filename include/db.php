@@ -2,8 +2,8 @@
 // Define variables
 define("DB_SERVER", "localhost");
 define("DB_NAME", "bulgarianforum");
-define("DB_USERNAME", "bulgarianforum");
-define("DB_PASSWORD", "bulgarianforum");
+define("DB_USERNAME", "root");
+define("DB_PASSWORD", "");
 
 // php errors = on
 ini_set("display_errors", 1);
