@@ -149,63 +149,60 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }        
 ?>
-<table>
-    <tr>
-        <td>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <h1>Регистрация</h1>
-                <label for="username">Потребителско име</label>
-                <?php
+<div class="text-center border">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <h1>Регистрация</h1>
+        <label for="username">Потребителско име</label>
+        <?php
                 if(!empty($username_err)){
                     echo '<br /><span style="color: red;">'.$username_err.'</span>';
                 }
                 ?>
-                <br />
-                <input name="username" id="username" type="text" placeholder="Потребителско име" />
-                <br />
-                <label for="email">Имейл</label>
-                <?php
+        <br />
+        <input name="username" id="username" type="text" placeholder="Потребителско име" />
+        <br />
+        <label for="email">Имейл</label>
+        <?php
                 if(!empty($email_err)){
                     echo '<br /><span style="color: red;">'.$email_err.'</span>';
                 }
                 ?>
-                <br />
-                <input name="email" id="email" type="email" placeholder="Имейл" />
-                <br />
-                <label for="password">Парола</label>
-                <?php
+        <br />
+        <input name="email" id="email" type="email" placeholder="Имейл" />
+        <br />
+        <label for="password">Парола</label>
+        <?php
                 if(!empty($password_err)){
                     echo '<br /><span style="color: red;">'.$password_err.'</span>';
                 }
                 ?>
-                <br />
-                <input name="password" id="password" type="password" placeholder="Парола" />
-                <br />
-                <label for="confirm_password">Потвърдете паролата</label>
-                <?php
+        <br />
+        <input name="password" id="password" type="password" placeholder="Парола" />
+        <br />
+        <label for="confirm_password">Потвърдете паролата</label>
+        <?php
                 if(!empty($confirm_password_err)){
                     echo '<br /><span style="color: red;">'.$confirm_password_err.'</span>';
                 }
                 ?>
-                <br />
-                <input name="confirm_password" id="confirm_password" type="password" placeholder="Потвърдете паролата" />
-                <br />
-                <label for="captcha">Капча (<strong><span style="color: red;"><?php echo $_COOKIE["number1"]; ?> + <?php echo $_COOKIE["number2"]; ?> = ?</span>)</strong></label>
-                <?php
+        <br />
+        <input name="confirm_password" id="confirm_password" type="password" placeholder="Потвърдете паролата" />
+        <br />
+        <label for="captcha">Капча (<strong><span style="color: red;"><?php echo $_COOKIE["number1"]; ?> +
+                    <?php echo $_COOKIE["number2"]; ?> = ?</span>)</strong></label>
+        <?php
                 if(!empty($captcha_err)){
                     echo '<br /><span style="color: red;">'.$captcha_err.'</span>';
                 }
                 ?>
-                <br />
-                <input name="captcha" id="captcha" type="number" placeholder="Моля решете задачата" />                
-                <div class="text-center">
-                    <button type="submit">Регистрация</button>
-                    <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>
-                </div>
-            </form>
-        </td>
-    </tr>
-</table>
+        <br />
+        <input name="captcha" id="captcha" type="number" placeholder="Моля решете задачата" />
+        <div class="text-center">
+            <button type="submit">Регистрация</button>
+            <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>
+        </div>
+    </form>
+</div>
 <?php
 include_once("../include/footer.php");
 ?>

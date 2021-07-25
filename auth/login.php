@@ -96,50 +96,47 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 ?>
-<table>
-    <tr>
-        <td>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <?php
+<div class="text-center border">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <?php
                 if(!empty($login_err)){
                     echo '<br /><span style="color: red;">'.$login_err.'</span>';
                 }
                 ?>
-                <h1>Вход</h1>
-                <label for="username">Потребителско име</label>
-                <?php
+        <h1>Вход</h1>
+        <label for="username">Потребителско име</label>
+        <?php
                 if(!empty($username_err)){
                     echo '<br /><span style="color: red;">'.$username_err.'</span>';
                 }
                 ?>
-                <br />
-                <input name="username" id="username" type="text" placeholder="Потребителско име" />
-                <br />
-                <label for="password">Парола</label>
-                <?php
+        <br />
+        <input name="username" id="username" type="text" placeholder="Потребителско име" />
+        <br />
+        <label for="password">Парола</label>
+        <?php
                 if(!empty($password_err)){
                     echo '<br /><span style="color: red;">'.$password_err.'</span>';
                 }
                 ?>
-                <br />
-                <input name="password" id="password" type="password" placeholder="Парола" />
-                <br />
-                <label for="captcha">Капча (<strong><span style="color: red;"><?php echo $_COOKIE["number1"]; ?> + <?php echo $_COOKIE["number2"]; ?> = ?</span>)</strong></label>
-                <?php
+        <br />
+        <input name="password" id="password" type="password" placeholder="Парола" />
+        <br />
+        <label for="captcha">Капча (<strong><span style="color: red;"><?php echo $_COOKIE["number1"]; ?> +
+                    <?php echo $_COOKIE["number2"]; ?> = ?</span>)</strong></label>
+        <?php
                 if(!empty($captcha_err)){
                     echo '<br /><span style="color: red;">'.$captcha_err.'</span>';
                 }
                 ?>
-                <br />
-                <input name="captcha" id="captcha" type="number" placeholder="Моля решете задачата" />
-                <div class="text-center">
-                    <button type="submit">Вход</button>
-                    <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>
-                </div>
-            </form>
-        </td>
-    </tr>
-</table>
+        <br />
+        <input name="captcha" id="captcha" type="number" placeholder="Моля решете задачата" />
+        <div class="text-center">
+            <button type="submit">Вход</button>
+            <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>
+        </div>
+    </form>
+</div>
 <?php
 include_once("../include/footer.php");
 ?>

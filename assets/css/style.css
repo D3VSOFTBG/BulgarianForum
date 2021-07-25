@@ -118,3 +118,11 @@ input{
     border-radius: 5px;
     border: 1px solid white;
 }
+.border{
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    border: 1px solid white;
+    max-width: fit-content;
+    background-color: #333;
+}
