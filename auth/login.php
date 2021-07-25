@@ -134,6 +134,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="text-center">
             <button type="submit">Вход</button>
             <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>
+            <p>ИЛИ</p>
+            <p>Отиди към (<a href="reset-password.php">Нулиране на паролата</a>).</p>
         </div>
     </form>
 </div>
