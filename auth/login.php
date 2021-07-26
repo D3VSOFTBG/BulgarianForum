@@ -97,14 +97,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <?php
                 if(!empty($login_err)){
-                    echo '<br /><span style="color: red;">'.$login_err.'</span>';
+                    echo '<br /><span class="error">'.$login_err.'</span>';
                 }
                 ?>
         <h1>Вход</h1>
         <label for="username">Потребителско име</label>
         <?php
                 if(!empty($username_err)){
-                    echo '<br /><span style="color: red;">'.$username_err.'</span>';
+                    echo '<br /><span class="error">'.$username_err.'</span>';
                 }
                 ?>
         <br />
@@ -113,7 +113,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <label for="password">Парола</label>
         <?php
                 if(!empty($password_err)){
-                    echo '<br /><span style="color: red;">'.$password_err.'</span>';
+                    echo '<br /><span class="error">'.$password_err.'</span>';
                 }
                 ?>
         <br />
@@ -124,11 +124,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <img class="captcha" src="captcha.php">
         <?php
                 if(!empty($captcha_err)){
-                    echo '<br /><span style="color: red;">'.$captcha_err.'</span>';
+                    echo '<br /><span class="error">'.$captcha_err.'</span>';
                 }
                 ?>
         <br />
-        <input name="captcha" id="captcha" type="text" placeholder="Моля решете задачата" pattern="[A-Z]{6}" />
+        <input name="captcha" id="captcha" type="text" placeholder="Моля препишете буквите" pattern="[A-Z]{6}" />
         <div class="text-center">
             <button type="submit">Вход</button>
             <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>

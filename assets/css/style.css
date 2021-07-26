@@ -130,3 +130,6 @@ input{
     border: 1px solid black;
     margin-top: 10px;
 }
+span.error{
+    color: red;
+}
