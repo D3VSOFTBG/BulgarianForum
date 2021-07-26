@@ -2,9 +2,6 @@
 // Initialize the session
 session_start();
 
-// CAPTCHA
-require_once("captcha.php");
-
 // Include database file
 require_once("../include/db.php");
 

@@ -126,3 +126,7 @@ input{
     max-width: fit-content;
     background-color: #333;
 }
+.captcha{
+    border: 1px solid black;
+    margin-top: 10px;
+}

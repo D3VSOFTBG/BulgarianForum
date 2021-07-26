@@ -2,9 +2,6 @@
 // Initialize the session
 session_start();
 
-// CAPTCHA
-require_once("captcha.php");
-
 // Include database file
 require_once("../include/db.php");
 
@@ -122,15 +119,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br />
         <input name="password" id="password" type="password" placeholder="Парола" />
         <br />
-        <label for="captcha">Капча (<strong><span style="color: red;"><?php echo $_COOKIE["number1"]; ?> +
-                    <?php echo $_COOKIE["number2"]; ?> = ?</span>)</strong></label>
+        <label for="captcha">Капча</label>
+        <br />
+        <img class="captcha" src="captcha.php">
         <?php
                 if(!empty($captcha_err)){
                     echo '<br /><span style="color: red;">'.$captcha_err.'</span>';
                 }
                 ?>
         <br />
-        <input name="captcha" id="captcha" type="number" placeholder="Моля решете задачата" />
+        <input name="captcha" id="captcha" type="text" placeholder="Моля решете задачата" pattern="[A-Z]{6}" />
         <div class="text-center">
             <button type="submit">Вход</button>
             <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>
