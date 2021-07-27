@@ -20,20 +20,20 @@ $username_err = $email_err = $password_err = $confirm_password_err = $captcha_er
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(empty(trim($_POST["captcha"]))){
-        $captcha_err = "Моля решете задачата.";
+    if(empty(trim(htmlspecialchars($_POST["captcha"])))){
+        $captcha_err = "Моля препишете буквите.";
     }else{
-        $captcha = trim($_POST["captcha"]);
-        if($captcha == $result){
+        $captcha = trim(htmlspecialchars($_POST["captcha"]));
+        if(isset($captcha) && $captcha == $_SESSION["CAPTCHA_TEXT"]){
             // Validate username
-            if(empty(trim($_POST["username"]))){
+            if(empty(trim(htmlspecialchars($_POST["username"])))){
                 $username_err = "Моля въведете потребителско име.";
-            }elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
+            }elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim(htmlspecialchars($_POST["username"])))){
                 $username_err = "Потребителското име единствено може да съдържа букви, цифри и долни черти.";
-            }elseif(strlen(trim($_POST["username"])) <= 5){
-                $username_err = "Дължината на потребителското име трябва да е най-малко 5 знаци.";
-            }elseif(strlen(trim($_POST["username"])) >= 50){
-                $username_err = "Дължината на потребителското име трябва да е най-много 50 знаци.";
+            }elseif(strlen(trim(htmlspecialchars($_POST["username"]))) <= 5){
+                $username_err = "Дължината на потребителското име трябва да е най-малко 5 символа.";
+            }elseif(strlen(trim(htmlspecialchars($_POST["username"]))) >= 50){
+                $username_err = "Дължината на потребителското име трябва да е най-много 50 символа.";
             }else{
                 // Prepare a select statement
                 $sql = "SELECT id FROM users WHERE username = :username";
@@ -43,14 +43,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
 
                     // Set parameters
-                    $param_username = trim($_POST["username"]);
+                    $param_username = trim(htmlspecialchars($_POST["username"]));
 
                     // Attempt to execute the prepared statement
                     if($stmt->execute()){
                         if($stmt->rowCount() == 1){
                             $username_err = "Това потребителско име вече съществува.";
                         }else{
-                            $username = trim($_POST["username"]);
+                            $username = trim(htmlspecialchars($_POST["username"]));
                         }
                     }else{
                         echo "Грешка, моля опитайте по късно.";
@@ -60,9 +60,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
             }
             // Validate email
-            if(empty(trim($_POST["email"]))){
+            if(empty(trim(htmlspecialchars($_POST["email"])))){
                 $email_err = "Моля въведете имейл адрес.";
-            }elseif(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
+            }elseif(!filter_var(htmlspecialchars($_POST["email"]), FILTER_VALIDATE_EMAIL)){
                 $email_err = "Моля въведете правилен имейл адрес.";
             }else{
                 $sql = "SELECT id FROM users WHERE email = :email";
@@ -72,14 +72,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
 
                     // Set parameters
-                    $param_email = trim($_POST["email"]);
+                    $param_email = trim(htmlspecialchars($_POST["email"]));
 
                     // Attempt to execute the prepared statement
                     if($stmt->execute()){
                         if($stmt->rowCount() == 1){
                             $email_err = "Този имейл адрес вече съществува.";
                         }else{
-                            $email = trim($_POST["email"]);
+                            $email = trim(htmlspecialchars($_POST["email"]));
                         }
                     }else{
                         echo "Грешка, моля опитайте по късно.";
@@ -88,23 +88,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     unset($stmt);
                 }
             }
+            
             // Validate password
-            if(empty(trim($_POST["password"]))){
+            if(empty(trim(htmlspecialchars($_POST["password"])))){
                 $password_err = "Моля въведете парола.";
-            }elseif(strlen(trim($_POST["password"])) < 8){
-                $password_err = "Паролата трябва да е поне 8 знаци.";
-            }elseif(strlen(trim($_POST["password"])) > 255){
-                $password_err = "Максималната дължина на паролата трябва да е 255 знаци.";
-            }elseif(!preg_match('/[\d]/', trim($_POST["password"]))){
+            }elseif(strlen(trim(htmlspecialchars($_POST["password"]))) < 8){
+                $password_err = "Паролата трябва да е поне 8 символа.";
+            }elseif(strlen(trim(htmlspecialchars($_POST["password"]))) > 255){
+                $password_err = "Максималната дължина на паролата трябва да е 255 символа.";
+            }elseif(!preg_match('/[\d]/', trim(htmlspecialchars($_POST["password"])))){
                 $password_err = "Вашата парола трябва да съдържа поне една цифра.";
             }else{
-                $password = trim($_POST["password"]);
+                $password = trim(htmlspecialchars($_POST["password"]));
             }
+
             // Validate confirm password
-            if(empty(trim($_POST["confirm_password"]))){
+            if(empty(trim(htmlspecialchars($_POST["confirm_password"])))){
                 $confirm_password_err = "Моля потвърдете паролата.";
             }else{
-                $confirm_password = trim($_POST["confirm_password"]);
+                $confirm_password = trim(htmlspecialchars($_POST["confirm_password"]));
                 if(empty($password_err) && ($password != $confirm_password)){
                     $confirm_password_err = "Паролата не съвпада.";
                 }
@@ -185,15 +187,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br />
         <input name="confirm_password" id="confirm_password" type="password" placeholder="Потвърдете паролата" />
         <br />
-        <label for="captcha">Капча (<strong><span style="color: red;"><?php echo $_COOKIE["number1"]; ?> +
-                    <?php echo $_COOKIE["number2"]; ?> = ?</span>)</strong></label>
+        <table class="border-none">
+            <tr>
+                <td class="border-none">
+                    <img class="captcha" src="captcha.php" alt="CAPTCHA IMAGE">
+                </td>
+                <td class="border-none">
+                    <strong class="refresh-captcha">&#8635;</strong>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <label for="captcha">Капча</label>
         <?php
                 if(!empty($captcha_err)){
-                    echo '<br /><span style="color: red;">'.$captcha_err.'</span>';
+                    echo '<br /><span class="error">'.$captcha_err.'</span>';
                 }
-                ?>
+        ?>
         <br />
-        <input name="captcha" id="captcha" type="number" placeholder="Моля решете задачата" />
+        <input name="captcha" type="text" placeholder="Моля препишете буквите" pattern="[A-Z]{6}" />
         <div class="text-center">
             <button type="submit">Регистрация</button>
             <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>

@@ -6,6 +6,7 @@
 <!--JavaScript-->
 <script src="<?php echo $url; ?>/assets/js/date.js"></script>
 <script src="<?php echo $url; ?>/assets/js/nav.js"></script>
+<script src="<?php echo $url; ?>/assets/js/captcha.js"></script>
 </body>
 
 </html>

@@ -20,22 +20,22 @@ $username_err = $password_err = $login_err = $captcha_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(empty(trim($_POST["captcha"]))){
-        $captcha_err = "Моля решете задачата.";
+    if(empty(trim(htmlspecialchars($_POST["captcha"])))){
+        $captcha_err = "Моля препишете буквите.";
     }else{
-        $captcha = trim($_POST["captcha"]);
-        if($captcha == $result){
-            if(empty(trim($_POST["username"]))){
+        $captcha = trim(htmlspecialchars($_POST["captcha"]));
+        if(isset($captcha) && $captcha == $_SESSION["CAPTCHA_TEXT"]){
+            if(empty(trim(htmlspecialchars($_POST["username"])))){
                 $username_err = "Моля въведете потребителско име.";
             }else{
-                $username = trim($_POST["username"]);
+                $username = trim(htmlspecialchars($_POST["username"]));
             }
         
             // Check if password is empty
-            if(empty(trim($_POST["password"]))){
+            if(empty(trim(htmlspecialchars($_POST["password"])))){
                 $password_err = "Моля въведете вашата парола.";
             }else{
-                $password = trim($_POST["password"]);
+                $password = trim(htmlspecialchars($_POST["password"]));
             }
         
             // Validate credentials
@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
         
                     // Set parameters
-                    $param_username = trim($_POST["username"]);
+                    $param_username = trim(htmlspecialchars($_POST["username"]));
         
                     // Attempt to execute the prepared statement
                     if($stmt->execute()){
@@ -119,16 +119,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br />
         <input name="password" id="password" type="password" placeholder="Парола" />
         <br />
-        <label for="captcha">Капча</label>
+        <table class="border-none">
+            <tr>
+                <td class="border-none">
+                    <img class="captcha" src="captcha.php" alt="CAPTCHA IMAGE">
+                </td>
+                <td class="border-none">
+                    <strong class="refresh-captcha">&#8635;</strong>
+                </td>
+            </tr>
+        </table>
         <br />
-        <img class="captcha" src="captcha.php">
+        <label for="captcha">Капча</label>
         <?php
                 if(!empty($captcha_err)){
                     echo '<br /><span class="error">'.$captcha_err.'</span>';
                 }
-                ?>
+        ?>
         <br />
-        <input name="captcha" id="captcha" type="text" placeholder="Моля препишете буквите" pattern="[A-Z]{6}" />
+        <input name="captcha" type="text" placeholder="Моля препишете буквите" pattern="[A-Z]{6}" />
         <div class="text-center">
             <button type="submit">Вход</button>
             <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>

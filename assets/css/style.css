@@ -128,8 +128,15 @@ input{
 }
 .captcha{
     border: 1px solid black;
-    margin-top: 10px;
 }
 span.error{
     color: red;
+}
+.refresh-captcha{
+    zoom: 2;
+    cursor: pointer;
+    vertical-align: top;
+}
+.border-none{
+    border: none !important;
 }

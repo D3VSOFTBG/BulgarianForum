@@ -11,7 +11,6 @@ if(empty($_SESSION["username"])){
 }else{
     echo '<p class="text-center alert">Здравей <strong>' . $_SESSION["username"] . '</strong>. ако искаш да излезнеш натисни (<a href="auth/logout.php"><strong>ТУК</strong></a>).</p>';
 }
-echo dirname(__FILE__);
 ?>
 <div style="overflow-x: auto;">
     <table>
