@@ -132,7 +132,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     // Attempt to execute the prepared statement
                     if($stmt->execute()){
-                        header("location: $url/auth/login.php");
+                        echo "<script>alert('ВИЕ СЕ РЕГИСТРИРАХТЕ УСПЕШНО!');location.href='login.php';</script>";
                     }else{
                         echo "Грешка, моля опитайте по късно.";
                     }
@@ -153,37 +153,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h1>Регистрация</h1>
         <label for="username">Потребителско име</label>
         <?php
-                if(!empty($username_err)){
-                    echo '<br /><span style="color: red;">'.$username_err.'</span>';
-                }
-                ?>
+            if(!empty($username_err)){
+                echo '<br /><span class="error">'.$username_err.'</span>';
+            }
+        ?>
         <br />
         <input name="username" id="username" type="text" placeholder="Потребителско име" />
         <br />
         <label for="email">Имейл</label>
         <?php
-                if(!empty($email_err)){
-                    echo '<br /><span style="color: red;">'.$email_err.'</span>';
-                }
-                ?>
+            if(!empty($email_err)){
+                echo '<br /><span class="error">'.$email_err.'</span>';
+            }
+        ?>
         <br />
         <input name="email" id="email" type="email" placeholder="Имейл" />
         <br />
         <label for="password">Парола</label>
         <?php
-                if(!empty($password_err)){
-                    echo '<br /><span style="color: red;">'.$password_err.'</span>';
-                }
-                ?>
+            if(!empty($password_err)){
+                echo '<br /><span class="error">'.$password_err.'</span>';
+            }
+        ?>
         <br />
         <input name="password" id="password" type="password" placeholder="Парола" />
         <br />
         <label for="confirm_password">Потвърдете паролата</label>
         <?php
-                if(!empty($confirm_password_err)){
-                    echo '<br /><span style="color: red;">'.$confirm_password_err.'</span>';
-                }
-                ?>
+            if(!empty($confirm_password_err)){
+                echo '<br /><span class="error">'.$confirm_password_err.'</span>';
+            }
+        ?>
         <br />
         <input name="confirm_password" id="confirm_password" type="password" placeholder="Потвърдете паролата" />
         <br />
@@ -200,9 +200,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br />
         <label for="captcha">Капча</label>
         <?php
-                if(!empty($captcha_err)){
-                    echo '<br /><span class="error">'.$captcha_err.'</span>';
-                }
+            if(!empty($captcha_err)){
+                echo '<br /><span class="error">'.$captcha_err.'</span>';
+            }
         ?>
         <br />
         <input name="captcha" type="text" placeholder="Моля препишете буквите" pattern="[A-Z]{6}" />
