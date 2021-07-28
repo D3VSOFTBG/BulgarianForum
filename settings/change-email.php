@@ -8,18 +8,22 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
+// Include database file
+require_once("../include/db.php");
+
 // Include header file
 include_once("../include/header.php");
 ?>
 <div class="text-center border">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"></form>
     <h1>Промени имейла</h1>
     <label>Нов имейл</label>
     <br />
-    <input placeholder="Нов имейл"/>
+    <input type="email" name="email" placeholder="Нов имейл"/>
     <br />
     <label>Потвърди новият имейл</label>
     <br />
-    <input placeholder="Потвърдете новият имейл"/>
+    <input type="email" name="confirm_email" placeholder="Потвърдете новият имейл"/>
     <br />
     <label>Вашата парола</label>
     <br />

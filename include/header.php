@@ -21,14 +21,14 @@ include_once("config.php");
         <a href="javascript:void(0);" class="icon" onclick="nav()">
             <img src="<?php echo $url; ?>/assets/images/nav.png" />&nbsp;НАВИГАЦИЯ
         </a>
-        <a href="<?php echo $url; ?>">Начало</a>
+        <a href="<?php echo $url; ?>">&#127968;&nbsp;Начало</a>
         <?php
         if(empty($_SESSION["id"])){
-            echo "<a href='$url/auth/register.php'>Регистрация</a>";
-            echo "<a href='$url/auth/login.php'>Вход</a>";
+            echo "<a href='$url/auth/register.php'>&#9940;&nbsp;Регистрация</a>";
+            echo "<a href='$url/auth/login.php'>&#128273;&nbsp;Вход</a>";
         }else{
-            echo "<a href='$url/settings/index.php'>Настройки</a>";
+            echo "<a href='$url/settings/index.php'>&#9881;&nbsp;Настройки</a>";
         }
         ?>
-        <a href="<?php echo $url; ?>/pages/search.php">Търси</a>
+        <a href="<?php echo $url; ?>/pages/search.php">&#128269;&nbsp;Търси</a>
     </nav>
