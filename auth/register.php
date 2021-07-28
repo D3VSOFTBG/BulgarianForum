@@ -108,7 +108,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }else{
                 $confirm_password = trim(htmlspecialchars($_POST["confirm_password"]));
                 if(empty($password_err) && ($password != $confirm_password)){
-                    $confirm_password_err = "Паролата не съвпада.";
+                    $confirm_password_err = "Паролите не съвпадат.";
                 }
             }
 

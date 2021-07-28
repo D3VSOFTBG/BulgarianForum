@@ -8,6 +8,25 @@ include_once("../include/header.php");
 // Define variables and initialize with empty values
 $password = $confirm_password = "";
 $password_err = $confirm_password_err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Check if password is empty
+    if(empty(trim(htmlspecialchars($_POST["password"])))){
+        $password_err = "Моля въведете вашата парола.";
+    }else{
+        $password = trim(htmlspecialchars($_POST["password"]));
+    }
+
+    // Check if confirm password is empty
+    if(empty(trim(htmlspecialchars($_POST["confirm_password"])))){
+        $confirm_password_err = "Моля потвърдете вашата парола.";
+    }else{
+        $confirm_password = trim(htmlspecialchars($_POST["confirm_password"]));
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Паролите не съвпадат";
+        }
+    }
+}
 ?>
 <div class="text-center border">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return deleteAccount();">

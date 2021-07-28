@@ -25,6 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }else{
         $captcha = trim(htmlspecialchars($_POST["captcha"]));
         if(isset($captcha) && $captcha == $_SESSION["CAPTCHA_TEXT"]){
+            // Check if username is empty
             if(empty(trim(htmlspecialchars($_POST["username"])))){
                 $username_err = "Моля въведете потребителско име.";
             }else{
