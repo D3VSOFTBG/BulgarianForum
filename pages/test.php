@@ -18,13 +18,13 @@ session_start();
 <body>
 
 <?php
-// Set session variables
-$_SESSION["favcolor"] = "green";
-$_SESSION["favanimal"] = "cat";
-echo "Session variables are set.";
-echo $_SESSION["favcolor"];
-?>
+// // Set session variables
+// $_SESSION["favcolor"] = "green";
+// $_SESSION["favanimal"] = "cat";
+// echo "Session variables are set.";
+// echo $_SESSION["favcolor"];
 
+?>
 </body>
 </html>
 
