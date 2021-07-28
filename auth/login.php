@@ -2,17 +2,17 @@
 // Initialize the session
 session_start();
 
-// Include database file
-require_once("../include/db.php");
-
-// Include header file
-include_once("../include/header.php");
-
 // Check if the user is already logged in, if yes then redirect people to index page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: ../index.php");
     exit;
 }
+
+// Include database file
+require_once("../include/db.php");
+
+// Include header file
+include_once("../include/header.php");
 
 // Define variables and initialize with empty values
 $username = $password = $captcha = "";
