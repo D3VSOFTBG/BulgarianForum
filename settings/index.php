@@ -5,7 +5,7 @@ session_start();
 // Include header file
 include_once("../include/header.php");
 ?>
-<div class="text-center">
+<div class="text-center border">
     <h1>Настройки</h1>
     <a href="change-password.php"><button>Промени паролата</button></a>
     <br />
