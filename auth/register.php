@@ -158,7 +158,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="username" id="username" type="text" placeholder="Потребителско име" />
+        <input name="username" id="username" type="text" placeholder="Потребителско име" required />
         <br />
         <label for="email">Имейл</label>
         <?php
@@ -167,7 +167,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="email" id="email" type="email" placeholder="Имейл" />
+        <input name="email" id="email" type="email" placeholder="Имейл" required />
         <br />
         <label for="password">Парола</label>
         <?php
@@ -176,7 +176,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="password" id="password" type="password" placeholder="Парола" />
+        <input name="password" id="password" type="password" placeholder="Парола" required />
         <br />
         <label for="confirm_password">Потвърдете паролата</label>
         <?php
@@ -185,7 +185,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="confirm_password" id="confirm_password" type="password" placeholder="Потвърдете паролата" />
+        <input name="confirm_password" id="confirm_password" type="password" placeholder="Потвърдете паролата" required />
         <br />
         <?php require("../include/captcha-html.php"); ?>
         <br />

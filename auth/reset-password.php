@@ -31,6 +31,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $email = trim(htmlspecialchars($_POST["email"]));
             }
 
+            // Validate token
+
             // Validate new password
             if(empty(trim(htmlspecialchars($_POST["new_password"])))){
                 $new_password_err = "Моля въведете нова парола";
@@ -48,8 +50,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
+        }else{
+            $captcha_err = "Грешен отговор, моля опитайте отново.";
         }
-
     }
 }
 ?>
@@ -63,6 +66,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <h1>Нулиране на паролата</h1>
         <label>Вашият имейл</label>
+        <?php
+            if(!empty($email_err)){
+                echo '<br /><span class="error">'.$email_err.'</span>';
+            }
+        ?>
         <br />
         <input name="email" type="email" placeholder="Вашият имейл" />
         <br />
@@ -71,6 +79,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <input name="token" type="text" placeholder="Вашият Тoken" />
         <br />
         <label>Нова парола</label>
+        <?php
+            if(!empty($new_password_err)){
+                echo '<br /><span class="error">'.$new_password_err.'</span>';
+            }
+        ?>
         <br />
         <input name="new_password" type="password" placeholder="Нова парола" />
         <br />

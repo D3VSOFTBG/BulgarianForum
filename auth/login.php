@@ -109,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="username" id="username" type="text" placeholder="Потребителско име" />
+        <input name="username" id="username" type="text" placeholder="Потребителско име" required />
         <br />
         <label for="password">Парола</label>
         <?php
@@ -118,7 +118,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="password" id="password" type="password" placeholder="Парола" />
+        <input name="password" id="password" type="password" placeholder="Парола" required />
         <br />
         <?php require("../include/captcha-html.php"); ?>
         <div class="text-center">

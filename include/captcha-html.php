@@ -15,7 +15,7 @@
     }
 ?>
 <br />
-<input name="captcha" type="text" placeholder="Моля препишете буквите" pattern="[A-Z]{6}" />
+<input name="captcha" type="text" placeholder="Моля препишете буквите" pattern="[A-Z]{6}" required />
 <script>
     var refreshButton = document.querySelector(".refresh-captcha");
     refreshButton.onclick = function () {
