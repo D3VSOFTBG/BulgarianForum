@@ -14,10 +14,8 @@ require 'vendor/autoload.php';
         $mail->Subject = 'PHPMailer contact form';
         $mail->isHTML(false);
         $mail->Body = <<<EOT
-Email: {$_POST['email']}
-Name: {$_POST['name']}
-Message: {$_POST['message']}
-EOT;
+        Key: 123
+        EOT;
         if (!$mail->send()) {
             $msg = 'Sorry, something went wrong. Please try again later.';
         } else {
