@@ -25,7 +25,7 @@ include_once("../include/header.php");
     <br />
     <input placeholder="Потвърдете новата парола" required />
     <br />
-    <button>Промени</button>
+    <a href="index.php"><button type="button">Назад</button><button>Промени</button>
 </div>
 <?php
 include_once("../include/footer.php");

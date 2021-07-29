@@ -138,7 +138,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="email" type="email" placeholder="Вашият имейл" />
+        <input name="email" type="email" placeholder="Вашият имейл" required />
         <br />
         <label>Вашият Тoken</label>
         <?php
@@ -147,7 +147,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="token" type="text" placeholder="Вашият Тoken" />
+        <input name="token" type="text" placeholder="Вашият Тoken" required />
         <br />
         <label>Нова парола</label>
         <?php
@@ -156,11 +156,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="new_password" type="password" placeholder="Нова парола" />
+        <input name="new_password" type="password" placeholder="Нова парола" required />
         <br />
         <label>Повторете новата парола</label>
         <br />
-        <input name="confirm_new_password" type="password" placeholder="Повторете новата парола" />
+        <input name="confirm_new_password" type="password" placeholder="Повторете новата парола" required />
         <br />
         <?php require("../include/captcha-html.php"); ?>
         <br />

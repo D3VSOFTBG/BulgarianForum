@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br />
         <input type="password" name="confirm_password" placeholder="Потвърдете текущата парола" required />
         <br />
-        <button type="submit">Изтрий</button>
+        <a href="index.php"><button type="button">Назад</button><button type="submit">Изтрий</button>
     </form>
 </div>
 <script>
