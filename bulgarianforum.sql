@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jul 13, 2021 at 02:15 PM
--- Server version: 8.0.25-0ubuntu0.20.04.1
--- PHP Version: 7.4.3
+-- Хост: 127.0.0.1
+-- Време на генериране: 29 юли 2021 в 04:52
+-- Версия на сървъра: 10.4.20-MariaDB
+-- Версия на PHP: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,40 +18,42 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bulgarianforum`
+-- База данни: `bulgarianforum`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура на таблица `users`
 --
 
 CREATE TABLE `users` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Схема на данните от таблица `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
-(1, 'asd', 'asd', 'asd', '2021-06-28'),
-(2, 'test', 'test@gmail.com', '$2y$10$WGt.rudTBs4mlO7MBxhDxu0EH1ef.VlOx18LFodXWPmfSroCneQW.', '2021-06-26'),
 (3, 'test2', 'test2@gmail.com', '$2y$10$nX6IM/B2xycREmZ5c7MJmeeuOHj1A2e5oF4tevj9vi6GwBc.7mZkK', '2021-06-26'),
 (4, 'testing123', 'testing123@gmail.com', '$2y$10$PnoD9whra37uaElh5X0w6uupq2nrELXRXByj4sMvPYDuQ4wWgFMda', '2021-06-30'),
-(5, 'proba123', 'proba123@gmail.com', '$2y$10$Sgo2GzlGt66S5wURL7Ss1.XPaCH117cohzmIV7CQ9IvDwK5eCBIX2', '2021-07-10');
+(8, 'parapetXD123', 'parapetXD123@gmail.com', '$2y$10$qAN8j1OxvLbJJoyZOBiEN.kZrAC1YZMQ7nl7zJngUgk/kK0uKHc8O', '2021-07-27'),
+(9, 'leshtorba123', 'leshtorba123@gmail.com', '$2y$10$cmSd.GmeJ4LU/UO5AKZ4k.4TrWJuMGUvlcLbh8AdYkO/vProsyDQ.', '2021-07-27'),
+(10, 'parolata', 'parolata@gmail.com', '$2y$10$6szoppCa3EyDd0P7FOcgA.u.VvHDfsv6M6QCyRXsFqAMNMaH7S4yK', '2021-07-27'),
+(11, 'testvam123', 'testvam123@gmail.com', '$2y$10$weVdAg5ZGmQ7vJt66dqsde4o5KDplCvRFMV4aOjMtEPfnnGOZur7G', '2021-07-28'),
+(12, 'proba123', 'proba123@gmail.com', '$2y$10$HfQ58v1qFGT8yUqgznpFSO9pKxCJB6PuQCYPPukFMrLHlcoJcpKqS', '2021-07-28');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `users`
+-- Индекси за таблица `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -67,7 +68,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
