@@ -120,7 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br />
         <input name="password" id="password" type="password" placeholder="Парола" />
         <br />
-        <?php require("captcha-html.php"); ?>
+        <?php require("../include/captcha-html.php"); ?>
         <div class="text-center">
             <button type="submit">Вход</button>
             <p>Отиди към (<a href="register.php">Регистрация</a>).</p>

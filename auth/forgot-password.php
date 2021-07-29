@@ -29,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br />
         <input type="email" placeholder="Въведете вашият имейл" />
         <br />
-        <?php require("captcha-html.php"); ?>
+        <?php require("../include/captcha-html.php"); ?>
         <br />
         <button type="submit">Изпрати</button>
         <p>Ще ви изпратим ключ ако имейлът ви съществува в нашата система.</p>

@@ -187,7 +187,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br />
         <input name="confirm_password" id="confirm_password" type="password" placeholder="Потвърдете паролата" />
         <br />
-        <?php require("captcha-html.php"); ?>
+        <?php require("../include/captcha-html.php"); ?>
         <br />
         <button type="submit">Регистрация</button>
         <p>Отиди към (<a href="login.php">ВХОД</a>).</p>
