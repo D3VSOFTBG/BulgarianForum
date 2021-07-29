@@ -34,10 +34,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Validate token
             if(empty(trim(htmlspecialchars($_POST["token"])))){
                 $token_err = "Моля въведете вашият Token";
-            }elseif(){
-
             }else{
-                $token = trim(htmlspecialchars($_POST["token"]));
+                // Prepare a select statement
+                $sql = "SELECT token FROM users WHERE email = :email";
+
+                if($stmt = $pdo->prepare($sql)){
+                    // Bind variables to the prepared statement as parameters
+                    $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+
+                    // Set parameters
+                    $param_email = trim(htmlspecialchars($_POST["email"]));
+
+                    // Attempt to execute the prepared statement
+                    if($stmt->execute()){
+                        if($row = $stmt->fetch()){
+                            $token = trim(htmlspecialchars($_POST["token"]));
+                            if($row["token"] != $token){
+                                $token_err = "Вашият Token е грешен.";
+                            }
+                        }
+                    }else{
+                        echo "Грешка, моля опитайте по късно.";
+                    }
+                    // Close statement
+                    unset($stmt);
+                }
             }
 
             // Validate new password
@@ -82,6 +103,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <input name="email" type="email" placeholder="Вашият имейл" />
         <br />
         <label>Вашият Тoken</label>
+        <?php
+            if(!empty($token_err)){
+                echo '<br /><span class="error">'.$token_err.'</span>';
+            }
+        ?>
         <br />
         <input name="token" type="text" placeholder="Вашият Тoken" />
         <br />
