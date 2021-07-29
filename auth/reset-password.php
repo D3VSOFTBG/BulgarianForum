@@ -80,9 +80,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
 
             // Validate confirm new password
+            if(empty(trim(htmlspecialchars($_POST["confirm_new_password"])))){
+                $confirm_new_password_err = "Моля потвърдете паролата.";
+            }else{
+                $confirm_new_password = trim(htmlspecialchars($_POST["confirm_new_password"]));
+                if(empty($new_password_err) && ($new_password != $confirm_new_password)){
+                    $confirm_new_password_err = "Паролите не съвпадат";
+                }
+            }
 
+            // Check input errors before inserting in database
+            if(empty($email_err) && empty($token_err) && empty($new_password_err) && empty($confirm_new_password_err)){
+                // Prepare an insert statement
+                $sql = "UPDATE users SET password = :password WHERE email = :email";
 
+                if($stmt = $pdo->prepare($sql)){
+                    // Bind variables to the prepared statement as parameters
+                    $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+                    $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
 
+                    // Set parameters
+                    $param_password = trim(htmlspecialchars($_POST["new_password"]));
+                    $param_email = trim(htmlspecialchars($_POST["email"]));
+
+                    // Attempt to execute the prepared statement
+                    if($stmt->execute()){
+                        $pdo->prepare("UPDATE users SET token = ?, token_created_time = ? WHERE email = ?")->execute([NULL, NULL, $param_email]);
+                        echo "<script>alert('ВАШАТА ПАРОЛА Е НУЛИРАНА УСПЕШНО!');location.href='login.php';</script>";
+                    }else{
+                        echo "Грешка, моля опитайте по късно.";
+                    }
+                    // Close statement
+                    unset($stmt);
+                }
+            }
+            // Close connection
+            unset($pdo);
         }else{
             $captcha_err = "Грешна капча, моля опитайте отново.";
         }
