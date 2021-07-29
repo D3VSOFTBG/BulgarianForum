@@ -53,12 +53,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $mail = new PHPMailer;
                             $mail->CharSet = "UTF-8";
                             $mail->isSMTP();
-                            $mail->Host = 'smtp.mailtrap.io';
-                            $mail->Port = 2525;
+                            $mail->Host = $smtp_host;
+                            $mail->Port = $smtp_port;
                             $mail->SMTPAuth = true;
-                            $mail->Username = '81dd1f9c393198';
-                            $mail->Password = '8ffe50f775a323';
-                            $mail->setFrom('admin@d3vbg.eu', 'D3VBG');
+                            $mail->Username = $smtp_username;
+                            $mail->Password = $smtp_password;
+                            $mail->setFrom($smtp_from_email, $smtp_from_username);
                             $mail->addAddress($param_email);
                             if ($mail->addReplyTo($param_email)) {
                                 $mail->Subject = "$title - Забравена парола";
