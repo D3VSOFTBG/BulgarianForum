@@ -48,13 +48,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // Attempt to execute the prepared statement
                     if($stmt->execute()){
                         if($row = $stmt->fetch()){
+                            $token = trim(htmlspecialchars($_POST["token"]));
                             if($row["token"] != $token){
                                 $token_err = "Вашият Token е невалиден.";
                             }else{
                                 // The token must be used up to (1800 = 30 minutes)
-                                if(time() - $row["token_created_time"] < 1800){
-                                    $token = trim(htmlspecialchars($_POST["token"]));
-                                }else{
+                                if(!(time() - $row["token_created_time"] < 1800)){
                                     $token_err = "Времето ви за използване на този Token е изтекло.";
                                 }
                             }
