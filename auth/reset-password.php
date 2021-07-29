@@ -100,12 +100,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
 
                     // Set parameters
-                    $param_password = trim(htmlspecialchars($_POST["new_password"]));
-                    $param_email = trim(htmlspecialchars($_POST["email"]));
+                    $param_password = password_hash($new_password, PASSWORD_DEFAULT);
+                    $param_email = $email;
 
                     // Attempt to execute the prepared statement
                     if($stmt->execute()){
-                        $pdo->prepare("UPDATE users SET token = ?, token_created_time = ? WHERE email = ?")->execute([NULL, NULL, $param_email]);
+                        $pdo->prepare("UPDATE users SET token = ?, token_created_time = ? WHERE email = ?")->execute([NULL, NULL, $email]);
                         echo "<script>alert('ВАШАТА ПАРОЛА Е НУЛИРАНА УСПЕШНО!');location.href='login.php';</script>";
                     }else{
                         echo "Грешка, моля опитайте по късно.";

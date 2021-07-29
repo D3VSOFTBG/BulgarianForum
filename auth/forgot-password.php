@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if($stmt->rowCount() == 1){
                             // Token
                             $token = md5(substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") , 0 , 62));
-                            $pdo->prepare("UPDATE users SET token = ?, token_created_time = ? WHERE email = ?")->execute([$token, time(), $param_email]);
+                            $pdo->prepare("UPDATE users SET token = ?, token_created_time = ? WHERE email = ?")->execute([$token, time(), $email]);
                             
                             // Email
                             require '../vendor/autoload.php';
@@ -65,8 +65,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $mail->Username = $smtp_username;
                             $mail->Password = $smtp_password;
                             $mail->setFrom($smtp_from_email, $smtp_from_username);
-                            $mail->addAddress($param_email);
-                            if ($mail->addReplyTo($param_email)) {
+                            $mail->addAddress($email);
+                            if ($mail->addReplyTo($email)) {
                                 $mail->Subject = "$title - Забравена парола";
                                 $mail->isHTML(false);
                                 $mail->Body = <<<EOT
