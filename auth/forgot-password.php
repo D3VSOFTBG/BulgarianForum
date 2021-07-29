@@ -49,6 +49,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if($stmt->execute()){
                         // Check if email exist, if yes then send key via mail
                         if($stmt->rowCount() == 1){
+                            // Token
+                            $token = md5(substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") , 0 , 62));
+                            $pdo->prepare("UPDATE users SET token = ? WHERE email = ?")->execute([$token, $param_email]);
+
+                            $_SESSION["Token_sent_time"] = time();
+
+                            // Email
                             require '../vendor/autoload.php';
                             $mail = new PHPMailer;
                             $mail->CharSet = "UTF-8";
@@ -64,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 $mail->Subject = "$title - Забравена парола";
                                 $mail->isHTML(false);
                                 $mail->Body = <<<EOT
-                                Key: 123
+                                Token: $token
                                 EOT;
                                 $mail->send();
                                 $sent_message = "Проверете си имейла!";
@@ -86,6 +93,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 <div class="text-center border">
+    <p>Ще ви изпратим Token ако имейлът ви съществува в нашата система.<br /> Ако получите вашият Token, натиснете
+        долният бутон.</p>
+    <a href="reset-password.php"><button type="button">Нулиране на парола</button></a>
+</div>
+<br />
+<div class="text-center border">
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <?php
             if(!empty($sent_message)){
@@ -100,9 +113,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <?php require("../include/captcha-html.php"); ?>
         <br />
         <button type="submit">Изпрати</button>
-        <p>Ще ви изпратим ключ ако имейлът ви съществува в нашата система.</p>
-        <p>След като получите ключа, натиснете долният бутон.</p>
-        <a href="reset-password.php"><button type="button">ИМАМ КЛЮЧ</button></a>
     </form>
 </div>
 <?php
