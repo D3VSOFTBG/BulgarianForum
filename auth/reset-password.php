@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $token_err = "Моля въведете вашият Token";
             }else{
                 // Prepare a select statement
-                $sql = "SELECT token FROM users WHERE email = :email";
+                $sql = "SELECT token, token_created_time FROM users WHERE email = :email";
 
                 if($stmt = $pdo->prepare($sql)){
                     // Bind variables to the prepared statement as parameters
@@ -48,9 +48,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // Attempt to execute the prepared statement
                     if($stmt->execute()){
                         if($row = $stmt->fetch()){
-                            $token = trim(htmlspecialchars($_POST["token"]));
-                            if($row["token"] != $token){
-                                $token_err = "Вашият Token е грешен.";
+                            if(time() - $row["token_created_time"] < 1800){
+                                $token = trim(htmlspecialchars($_POST["token"]));
+                                if($row["token"] != $token){
+                                    $token_err = "Вашият Token е грешен.";
+                                }
+                            }else{
+                                $token_err = "Времето ви за използване на този Token е изтекло.";
                             }
                         }
                     }else{

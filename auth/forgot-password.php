@@ -48,14 +48,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     // Attempt to execute the prepared statement
                     if($stmt->execute()){
-                        // Check if email exist, if yes then send key via mail
+                        // Check if email exist, if yes then send Token via mail
                         if($stmt->rowCount() == 1){
                             // Token
                             $token = md5(substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") , 0 , 62));
-                            $pdo->prepare("UPDATE users SET token = ? WHERE email = ?")->execute([$token, $param_email]);
-
-                            $_SESSION["Token_sent_time"] = time();
-
+                            $pdo->prepare("UPDATE users SET token = ?, token_created_time = ? WHERE email = ?")->execute([$token, time(), $param_email]);
+                            
                             // Email
                             require '../vendor/autoload.php';
                             $mail = new PHPMailer;
