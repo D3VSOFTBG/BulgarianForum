@@ -17,6 +17,41 @@ include_once("../include/header.php");
 // Define variables and initialize with empty values
 $email = $new_password = $confirm_new_password = $captcha = "";
 $email_err = $new_password_err = $confirm_new_password_err = $captcha_err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(empty(trim(htmlspecialchars($_POST["captcha"])))){
+        $captcha_err = "Моля препишете буквите.";
+    }else{
+        $captcha = trim(htmlspecialchars($_POST["captcha"]));
+        if(isset($captcha) && $captcha == $_SESSION["CAPTCHA_TEXT"]){
+            // Validate email
+            if(empty(trim(htmlspecialchars($_POST["email"])))){
+                $email_err = "Моля въведете вашият имейл";
+            }else{
+                $email = trim(htmlspecialchars($_POST["email"]));
+            }
+
+            // Validate new password
+            if(empty(trim(htmlspecialchars($_POST["new_password"])))){
+                $new_password_err = "Моля въведете нова парола";
+            }elseif(strlen(trim(htmlspecialchars($_POST["new_password"]))) < 8){
+                $new_password_err = "Паролата трябва да е поне 8 символа.";
+            }elseif(strlen(trim(htmlspecialchars($_POST["new_password"]))) > 255){
+                $new_password_err = "Максималната дължина на паролата трябва да е 255 символа.";
+            }elseif(!preg_match('/[\d]/', trim(htmlspecialchars($_POST["new_password"])))){
+                $new_password_err = "Вашата парола трябва да съдържа поне една цифра.";
+            }else{
+                $new_password = trim(htmlspecialchars($_POST["new_password"]));
+            }
+
+            // Validate confirm new password
+
+
+
+        }
+
+    }
+}
 ?>
 <div class="text-center border">
     <p>Имате 30 минути за да нулирате вашата парола с вашият Token,<br />ако не успеете трябва отново да натиснете

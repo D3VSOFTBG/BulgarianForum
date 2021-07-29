@@ -19,14 +19,14 @@ $password = $confirm_password = "";
 $password_err = $confirm_password_err = $delete_account_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Check if password is empty
+    // Validate password
     if(empty(trim(htmlspecialchars($_POST["password"])))){
         $password_err = "Моля въведете вашата парола.";
     }else{
         $password = trim(htmlspecialchars($_POST["password"]));
     }
 
-    // Check if confirm password is empty
+    // Validate confirm password
     if(empty(trim(htmlspecialchars($_POST["confirm_password"])))){
         $confirm_password_err = "Моля потвърдете вашата парола.";
     }else{

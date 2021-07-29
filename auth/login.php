@@ -25,14 +25,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }else{
         $captcha = trim(htmlspecialchars($_POST["captcha"]));
         if(isset($captcha) && $captcha == $_SESSION["CAPTCHA_TEXT"]){
-            // Check if username is empty
+            // Validate username
             if(empty(trim(htmlspecialchars($_POST["username"])))){
                 $username_err = "Моля въведете потребителско име.";
             }else{
                 $username = trim(htmlspecialchars($_POST["username"]));
             }
         
-            // Check if password is empty
+            // Validate password
             if(empty(trim(htmlspecialchars($_POST["password"])))){
                 $password_err = "Моля въведете вашата парола.";
             }else{

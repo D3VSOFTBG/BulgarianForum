@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }else{
         $captcha = trim(htmlspecialchars($_POST["captcha"]));
         if(isset($captcha) && $captcha == $_SESSION["CAPTCHA_TEXT"]){
-            // Check if email is empty
+            // Validate email
             if(empty(trim(htmlspecialchars($_POST["email"])))){
                 $email_err = "Моля въведете вашият имейл.";
             }else{
