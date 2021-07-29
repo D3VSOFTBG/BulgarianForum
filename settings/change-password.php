@@ -15,15 +15,15 @@ include_once("../include/header.php");
     <h1>Промени паролата</h1>
     <label>Текуща парола</label>
     <br />
-    <input placeholder="Текуща парола"/>
+    <input placeholder="Текуща парола" required />
     <br />
     <label>Нова парола</label>
     <br />
-    <input placeholder="Нова парола"/>
+    <input placeholder="Нова парола" required />
     <br />
     <label>Потвърдете новата парола</label>
     <br />
-    <input placeholder="Потвърдете новата парола"/>
+    <input placeholder="Потвърдете новата парола" required />
     <br />
     <button>Промени</button>
 </div>

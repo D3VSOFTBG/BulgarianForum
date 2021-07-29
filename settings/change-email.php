@@ -19,15 +19,15 @@ include_once("../include/header.php");
     <h1>Промени имейла</h1>
     <label>Нов имейл</label>
     <br />
-    <input type="email" name="email" placeholder="Нов имейл"/>
+    <input type="email" name="email" placeholder="Нов имейл" required />
     <br />
     <label>Потвърди новият имейл</label>
     <br />
-    <input type="email" name="confirm_email" placeholder="Потвърдете новият имейл"/>
+    <input type="email" name="confirm_email" placeholder="Потвърдете новият имейл" required />
     <br />
     <label>Вашата парола</label>
     <br />
-    <input placeholder="Вашата парола"/>
+    <input type="password" name="password" placeholder="Вашата парола" required />
     <br />
     <button>Промени</button>
 </div>

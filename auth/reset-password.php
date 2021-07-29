@@ -15,8 +15,8 @@ require_once("../include/db.php");
 include_once("../include/header.php");
 
 // Define variables and initialize with empty values
-$email = $new_password = $confirm_new_password = $captcha = "";
-$email_err = $new_password_err = $confirm_new_password_err = $captcha_err = "";
+$email = $token = $new_password = $confirm_new_password = $captcha = "";
+$email_err = $token_err = $new_password_err = $confirm_new_password_err = $captcha_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim(htmlspecialchars($_POST["captcha"])))){
@@ -32,6 +32,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
 
             // Validate token
+            if(empty(trim(htmlspecialchars($_POST["token"])))){
+                $token_err = "Моля въведете вашият Token";
+            }elseif(){
+
+            }else{
+                $token = trim(htmlspecialchars($_POST["token"]));
+            }
 
             // Validate new password
             if(empty(trim(htmlspecialchars($_POST["new_password"])))){
@@ -51,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
         }else{
-            $captcha_err = "Грешен отговор, моля опитайте отново.";
+            $captcha_err = "Грешна капча, моля опитайте отново.";
         }
     }
 }

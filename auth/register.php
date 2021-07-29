@@ -143,7 +143,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close connection
             unset($pdo);
         }else{
-            $captcha_err = "Грешен отговор, моля опитайте отново.";
+            $captcha_err = "Грешна капча, моля опитайте отново.";
         }
     }
 }        
