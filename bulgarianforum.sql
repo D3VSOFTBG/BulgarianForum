@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Време на генериране: 29 юли 2021 в 15:35
+-- Време на генериране: 29 юли 2021 в 15:56
 -- Версия на сървъра: 10.4.20-MariaDB
 -- Версия на PHP: 8.0.8
 
@@ -33,7 +33,7 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` date NOT NULL,
-  `key` int(10) DEFAULT NULL
+  `key` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -41,8 +41,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `key`) VALUES
-(3, 'test2', 'test2@gmail.com', '$2y$10$nX6IM/B2xycREmZ5c7MJmeeuOHj1A2e5oF4tevj9vi6GwBc.7mZkK', '2021-06-26', NULL),
-(4, 'testing123', 'testing123@gmail.com', '$2y$10$PnoD9whra37uaElh5X0w6uupq2nrELXRXByj4sMvPYDuQ4wWgFMda', '2021-06-30', NULL),
+(3, 'test2', 'test2@gmail.com', '$2y$10$nX6IM/B2xycREmZ5c7MJmeeuOHj1A2e5oF4tevj9vi6GwBc.7mZkK', '2021-06-26', 'asd'),
+(4, 'testing123', 'testing123@gmail.com', '$2y$10$PnoD9whra37uaElh5X0w6uupq2nrELXRXByj4sMvPYDuQ4wWgFMda', '2021-06-30', 'asd1231323'),
 (8, 'parapetXD123', 'parapetXD123@gmail.com', '$2y$10$qAN8j1OxvLbJJoyZOBiEN.kZrAC1YZMQ7nl7zJngUgk/kK0uKHc8O', '2021-07-27', NULL),
 (9, 'leshtorba123', 'leshtorba123@gmail.com', '$2y$10$cmSd.GmeJ4LU/UO5AKZ4k.4TrWJuMGUvlcLbh8AdYkO/vProsyDQ.', '2021-07-27', NULL),
 (10, 'parolata', 'parolata@gmail.com', '$2y$10$6szoppCa3EyDd0P7FOcgA.u.VvHDfsv6M6QCyRXsFqAMNMaH7S4yK', '2021-07-27', NULL),
