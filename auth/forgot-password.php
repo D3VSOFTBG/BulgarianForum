@@ -13,6 +13,14 @@ require_once("../include/db.php");
 
 // Include header file
 include_once("../include/header.php");
+
+// Define variables and initialize with empty values
+$email = "";
+$email_err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+}
 ?>
 <div class="text-center border">
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -21,7 +29,9 @@ include_once("../include/header.php");
         <br />
         <input type="email" placeholder="Въведете вашият имейл" />
         <br />
-        <button>Изпрати</button>
+        <?php require("captcha-html.php"); ?>
+        <br />
+        <button type="submit">Изпрати</button>
         <p>Ще ви изпратим ключ ако имейлът ви съществува в нашата система.</p>
         <p>След като получите ключа, натиснете долният бутон.</p>
         <a href="reset-password.php"><button type="button">ИМАМ КЛЮЧ</button></a>

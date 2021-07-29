@@ -4,13 +4,6 @@ session_start();
 
 // Include header file
 include_once("include/header.php");
-
-// Check if username's session is empty
-if(empty($_SESSION["username"])){
-    echo '<p class="text-center alert">Моля влез или се регистрирай!</p>';
-}else{
-    echo '<p class="text-center alert">Здравей <strong>' . $_SESSION["username"] . '</strong>. ако искаш да излезнеш натисни (<a href="auth/logout.php"><strong>ТУК</strong></a>).</p>';
-}
 ?>
 <div style="overflow-x: auto;">
     <table>

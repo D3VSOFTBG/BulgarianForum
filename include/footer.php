@@ -7,7 +7,7 @@
 <script src="<?php echo $url; ?>/assets/js/date.js"></script>
 <script src="<?php echo $url; ?>/assets/js/nav.js"></script>
 <?php
-    if(str_contains($_SERVER['SCRIPT_NAME'], 'register.php') || str_contains($_SERVER['SCRIPT_NAME'], 'login.php')){
+    if(str_contains($_SERVER['SCRIPT_NAME'], 'register.php') || str_contains($_SERVER['SCRIPT_NAME'], 'login.php') || str_contains($_SERVER['SCRIPT_NAME'], 'forgot-password.php')){
         echo "<script src='$url/assets/js/captcha.js'></script>";
     }
 ?>

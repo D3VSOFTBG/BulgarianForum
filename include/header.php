@@ -32,3 +32,11 @@ include_once("config.php");
         ?>
         <a href="<?php echo $url; ?>/pages/search.php">&#128269;&nbsp;Търси</a>
     </nav>
+    <?php
+        // Check if username's session is empty
+        if(empty($_SESSION["username"])){
+            echo '<p class="text-center alert">Моля влез или се регистрирай!</p>';
+        }else{
+            echo '<p class="text-center alert">Здравей <strong>' . $_SESSION["username"] . '</strong>. ако искаш да излезнеш натисни (<a href="auth/logout.php"><strong>ТУК</strong></a>).</p>';
+        }       
+    ?>

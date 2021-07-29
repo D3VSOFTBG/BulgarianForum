@@ -187,29 +187,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br />
         <input name="confirm_password" id="confirm_password" type="password" placeholder="Потвърдете паролата" />
         <br />
-        <table class="border-none">
-            <tr>
-                <td class="border-none">
-                    <img class="captcha" src="captcha.php" alt="CAPTCHA IMAGE">
-                </td>
-                <td class="border-none">
-                    <strong class="refresh-captcha">&#8635;</strong>
-                </td>
-            </tr>
-        </table>
+        <?php require("captcha-html.php"); ?>
         <br />
-        <label for="captcha">Капча</label>
-        <?php
-            if(!empty($captcha_err)){
-                echo '<br /><span class="error">'.$captcha_err.'</span>';
-            }
-        ?>
-        <br />
-        <input name="captcha" type="text" placeholder="Моля препишете буквите" pattern="[A-Z]{6}" />
-        <div class="text-center">
-            <button type="submit">Регистрация</button>
-            <p>Отиди към (<a href="<?php echo $url; ?>">Начална страница</a>).</p>
-        </div>
+        <button type="submit">Регистрация</button>
+        <p>Отиди към (<a href="login.php">ВХОД</a>).</p>
     </form>
 </div>
 <?php
