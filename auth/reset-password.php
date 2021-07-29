@@ -13,6 +13,10 @@ require_once("../include/db.php");
 
 // Include header file
 include_once("../include/header.php");
+
+// Define variables and initialize with empty values
+$email = $new_password = $confirm_new_password = $captcha = "";
+$email_err = $new_password_err = $confirm_new_password_err = $captcha_err = "";
 ?>
 <div class="text-center border">
     <p>Имате 30 минути за да нулирате вашата парола с вашият Token,<br />ако не успеете трябва отново да натиснете
@@ -33,13 +37,15 @@ include_once("../include/header.php");
         <br />
         <label>Нова парола</label>
         <br />
-        <input name="password" type="password" placeholder="Нова парола" />
+        <input name="new_password" type="password" placeholder="Нова парола" />
         <br />
         <label>Повторете новата парола</label>
         <br />
-        <input name="confirm_password" type="password" placeholder="Повторете новата парола" />
+        <input name="confirm_new_password" type="password" placeholder="Повторете новата парола" />
         <br />
-        <button>ИЗПРАТИ</button>
+        <?php require("../include/captcha-html.php"); ?>
+        <br />
+        <button>Изпрати</button>
     </form>
 </div>
 

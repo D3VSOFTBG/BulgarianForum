@@ -18,6 +18,7 @@ include_once("../include/header.php");
 $email = $captcha = $sent_message = "";
 $email_err = $captcha_err = "";
 
+// Include PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
