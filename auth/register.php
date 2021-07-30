@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $username_err = "Дължината на потребителското име трябва да е най-много 50 символа.";
             }else{
                 // Prepare a select statement
-                $sql = "SELECT id FROM users WHERE username = :username";
+                $sql = "SELECT username FROM users WHERE username = :username";
 
                 if($stmt = $pdo->prepare($sql)){
                     // Bind variables to the prepared statement as parameters
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }elseif(!filter_var(trim(htmlspecialchars($_POST["email"])), FILTER_VALIDATE_EMAIL)){
                 $email_err = "Моля въведете правилен имейл.";
             }else{
-                $sql = "SELECT id FROM users WHERE email = :email";
+                $sql = "SELECT email FROM users WHERE email = :email";
 
                 if($stmt = $pdo->prepare($sql)){
                     // Bind variables to the prepared statement as parameters
@@ -158,7 +158,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="username" id="username" type="text" placeholder="Потребителско име" required />
+        <input name="username" type="text" placeholder="Потребителско име" required />
         <br />
         <label for="email">Имейл</label>
         <?php
@@ -167,7 +167,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="email" id="email" type="email" placeholder="Имейл" required />
+        <input name="email" type="email" placeholder="Имейл" required />
         <br />
         <label for="password">Парола</label>
         <?php
@@ -176,7 +176,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="password" id="password" type="password" placeholder="Парола" required />
+        <input name="password" type="password" placeholder="Парола" required />
         <br />
         <label for="confirm_password">Потвърдете паролата</label>
         <?php
@@ -185,7 +185,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="confirm_password" id="confirm_password" type="password" placeholder="Потвърдете паролата" required />
+        <input name="confirm_password" type="password" placeholder="Потвърдете паролата" required />
         <br />
         <?php require("../include/captcha-html.php"); ?>
         <br />

@@ -25,7 +25,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }elseif(!filter_var(trim(htmlspecialchars($_POST["new_email"])), FILTER_VALIDATE_EMAIL)){
         $new_email_err = "Моля въведете правилен имейл.";
     }else{
-        $new_email = trim(htmlspecialchars($_POST["new_email"]));
+        $sql = "SELECT email FROM users WHERE email = :email";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            //$stmt->bindParam(":email");
+        }
+
+        //$new_email = trim(htmlspecialchars($_POST["new_email"]));
     }
 
     // Validate confirm new email
