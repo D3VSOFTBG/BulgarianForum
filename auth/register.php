@@ -61,9 +61,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
             // Validate email
             if(empty(trim(htmlspecialchars($_POST["email"])))){
-                $email_err = "Моля въведете имейл адрес.";
-            }elseif(!filter_var(htmlspecialchars($_POST["email"]), FILTER_VALIDATE_EMAIL)){
-                $email_err = "Моля въведете правилен имейл адрес.";
+                $email_err = "Моля въведете имейл.";
+            }elseif(!filter_var(trim(htmlspecialchars($_POST["email"])), FILTER_VALIDATE_EMAIL)){
+                $email_err = "Моля въведете правилен имейл.";
             }else{
                 $sql = "SELECT id FROM users WHERE email = :email";
 
@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // Attempt to execute the prepared statement
                     if($stmt->execute()){
                         if($stmt->rowCount() == 1){
-                            $email_err = "Този имейл адрес вече съществува.";
+                            $email_err = "Този имейл вече съществува.";
                         }else{
                             $email = trim(htmlspecialchars($_POST["email"]));
                         }
