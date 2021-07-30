@@ -54,14 +54,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <h1>Промени паролата</h1>
     <label>Текуща парола</label>
+    <?php
+        if(!empty($password_err)){
+            echo '<br /><span class="error">'.$password_err.'</span>';
+        }
+    ?>
     <br />
     <input type="password" name="password" placeholder="Текуща парола" required />
     <br />
     <label>Нова парола</label>
+    <?php
+        if(!empty($new_password_err)){
+            echo '<br /><span class="error">'.$new_password_err.'</span>';
+        }
+    ?>
     <br />
     <input type="password" name="new_password" placeholder="Нова парола" required />
     <br />
     <label>Потвърдете новата парола</label>
+    <?php
+        if(!empty($confirm_new_password_err)){
+            echo '<br /><span class="error">'.$confirm_new_password_err.'</span>';
+        }
+    ?>
     <br />
     <input type="password" name="confirm_new_password" placeholder="Потвърдете новата парола" required />
     <br />

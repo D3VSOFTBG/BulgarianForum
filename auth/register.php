@@ -177,7 +177,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="password" type="password" placeholder="Парола" required />
+        <input minlength="8" maxlength="255" name="password" type="password" placeholder="Парола" required />
         <br />
         <label for="confirm_password">Потвърдете паролата</label>
         <?php
@@ -186,7 +186,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="confirm_password" type="password" placeholder="Потвърдете паролата" required />
+        <input minlength="8" maxlength="255" name="confirm_password" type="password" placeholder="Потвърдете паролата" required />
         <br />
         <?php require("../include/captcha-html.php"); ?>
         <br />

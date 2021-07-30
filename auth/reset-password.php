@@ -156,11 +156,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="new_password" type="password" placeholder="Нова парола" required />
+        <input minlength="8" maxlength="255" name="new_password" type="password" placeholder="Нова парола" required />
         <br />
         <label>Повторете новата парола</label>
         <br />
-        <input name="confirm_new_password" type="password" placeholder="Повторете новата парола" required />
+        <input minlength="8" maxlength="255" name="confirm_new_password" type="password" placeholder="Повторете новата парола" required />
         <br />
         <?php require("../include/captcha-html.php"); ?>
         <br />
