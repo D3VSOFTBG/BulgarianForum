@@ -8,8 +8,37 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
+// Include database file
+require_once("../include/db.php");
+
 // Include header file
 include_once("../include/header.php");
+
+// Define variables and initialize with empty values
+$password = $new_password = $confirm_new_password = "";
+$password_err = $new_password_err = $confirm_new_password_err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Validate password
+    if(empty(trim(htmlspecialchars($_POST["password"])))){
+        $password_err = "Моля въведете вашата парола.";
+    }else{
+        $password = trim(htmlspecialchars($_POST["password"]));
+    }
+
+    // Validate new password
+    if(empty(trim(htmlspecialchars($_POST["new_password"])))){
+        $new_password_err = "Моля въведете нова парола.";        
+    }elseif(strlen(trim(htmlspecialchars($_POST["password"]))) < 8){
+        $new_password_err = "Паролата трябва да е поне 8 символа.";
+    }elseif(strlen(trim(htmlspecialchars($_POST["password"]))) > 255){
+        $new_password_err = "Максималната дължина на паролата може да е 255 символа.";
+    }else{
+        $new_password = trim(htmlspecialchars($_POST["new_password"]));
+    }
+
+    // Validate confirm new password
+}
 ?>
 <div class="text-center border">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
