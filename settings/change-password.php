@@ -32,7 +32,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }elseif(strlen(trim(htmlspecialchars($_POST["password"]))) < 8){
         $new_password_err = "Паролата трябва да е поне 8 символа.";
     }elseif(strlen(trim(htmlspecialchars($_POST["password"]))) > 255){
-        $new_password_err = "Максималната дължина на паролата може да е 255 символа.";
+        $new_password_err = "Максималната дължина на паролата е 255 символа.";
+    }elseif(!preg_match('/[\d]/', trim(htmlspecialchars($_POST["password"])))){
+        $new_password_err = "Вашата парола трябва да съдържа поне една цифра.";
     }else{
         $new_password = trim(htmlspecialchars($_POST["new_password"]));
     }
