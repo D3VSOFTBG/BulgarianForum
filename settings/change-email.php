@@ -66,6 +66,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = trim(htmlspecialchars($_POST["password"]));
     }
 
+    // Check input errors before inserting in database
+    if(empty($new_email_err) && empty($confirm_new_email_err) && empty($password_err)){
+        // Prepare an update statement
+        $sql = "UPDATE users SET email = :email WHERE id = :id";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            $stmt->bindParam(":id", $param_id, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_email = trim(htmlspecialchars($_POST["new_email"]));            $param_email = trim(htmlspecialchars($_POST["new_email"]));
+            $param_id = trim(htmlspecialchars($_SESSION["id"]));
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                echo "<script>alert('ВАШИЯТ ИМЕЙЛ Е СМЕНЕН УСПЕШНО!');location.href='index.php';</script>";
+            }else{
+                echo "Грешка, моля опитайте по късно.";
+            }
+            // Close statement
+            unset($stmt);
+        }
+    }
+    // Close connection
+    unset($pdo);
 }
 ?>
 <div class="text-center border">
