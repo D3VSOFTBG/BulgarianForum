@@ -48,6 +48,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $confirm_new_password_err = "Паролите не съвпадат.";
         }
     }
+
+    // Check input errors before inserting in database
+    if(empty($password_err) && empty($new_password_err) && empty($confirm_new_password_err)){
+        // Prepare an update statement
+        $sql = "UPDATE users SET password = :password WHERE id = :id";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+            $stmt->bindParam(":id", $param_id, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_password = password_hash($new_password, PASSWORD_DEFAULT);
+            $param_id = $_SESSION["id"];
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                echo "<script>alert('ВАШАТА ПАРОЛА Е ПРОМЕНЕНА УСПЕШНО!');location.href='index.php';</script>";
+            }else{
+                echo "Грешка, моля опитайте по късно.";
+            }
+            // Close statement
+            unset($stmt);
+        }
+    }
+    // Close connection
+    unset($pdo);
 }
 ?>
 <div class="text-center border">
