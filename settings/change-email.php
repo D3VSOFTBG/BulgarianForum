@@ -29,10 +29,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            //$stmt->bindParam(":email");
-        }
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
 
-        //$new_email = trim(htmlspecialchars($_POST["new_email"]));
+            // Set parameters
+            $param_email = trim(htmlspecialchars($_POST["new_email"]));
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                if($stmt->rowCount() == 1){
+                    $new_email_err = "Този имейл вече съществува.";
+                }else{
+                    $new_email = trim(htmlspecialchars($_POST["new_email"]));
+                }
+            }else{
+                echo "Грешка, моля опитайте по късно.";
+            }
+            // Close statement
+            unset($stmt);
+        }
     }
 
     // Validate confirm new email

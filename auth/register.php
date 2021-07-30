@@ -59,6 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     unset($stmt);
                 }
             }
+            
             // Validate email
             if(empty(trim(htmlspecialchars($_POST["email"])))){
                 $email_err = "Моля въведете имейл.";
