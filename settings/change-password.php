@@ -40,6 +40,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Validate confirm new password
+    if(empty(trim(htmlspecialchars($_POST["confirm_new_password"])))){
+        $confirm_new_password_err = "Моля потвърдете вашата парола.";
+    }else{
+        $confirm_new_password = trim(htmlspecialchars($_POST["confirm_new_password"]));
+        if(empty($new_password_err) && ($new_password != $confirm_new_password)){
+            $confirm_new_password_err = "Паролите не съвпадат.";
+        }
+    }
 }
 ?>
 <div class="text-center border">
