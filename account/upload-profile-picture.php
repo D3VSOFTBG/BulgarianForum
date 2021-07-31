@@ -19,7 +19,7 @@ $upload_profile_picture = "";
 $upload_profile_picture_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(empty($_FILES["upload_profile_picture"]["name"])){
+    if(empty(htmlspecialchars($_FILES["upload_profile_picture"]["name"]))){
         $upload_profile_picture_err = "Моля изберете снимка.";
     }else{
         $username = $_SESSION["username"];
@@ -34,21 +34,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mkdir($target_dir, 0777, true);
         }
         
-        $target_file = $target_dir . basename($_FILES["upload_profile_picture"]["name"]);
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $profile_picture_name = basename(htmlspecialchars($_FILES["upload_profile_picture"]["name"]));
+        // Split a string by a string
+        $exploded_profile_picture_name = explode(".", $profile_picture_name);
+        // Get string before dot and hash it
+        $current_of_exploded_profile_picture_name = md5(current($exploded_profile_picture_name));
+        // Get string after dot
+        $end_of_exploded_profile_picture_name = end($exploded_profile_picture_name);
+
+        $target_file = $target_dir . $current_of_exploded_profile_picture_name . "." . $end_of_exploded_profile_picture_name;
+        $extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     
         // Check if image file is actual image or fake image
-        $check = getimagesize($_FILES["upload_profile_picture"]["tmp_name"]);
+        $check = getimagesize(htmlspecialchars($_FILES["upload_profile_picture"]["tmp_name"]));
         
         // Validate profile picture
         if($check !== false){
             // Check file size
-            if(!($_FILES["upload_profile_picture"]["size"] > 1000000)){
-                if($imageFileType = "jpg" && $imageFileType = "png" && $imageFileType = "jpeg" && $imageFileType = "gif"){
-                    if(move_uploaded_file($_FILES["upload_profile_picture"]["tmp_name"], $target_file)){
-                        echo "<script>alert('ВАШАТА СНИМКА Е КАЧЕНА УСПЕШНО!');location.href='index.php';</script>";
+            if(!(htmlspecialchars($_FILES["upload_profile_picture"]["size"]) > 1000000)){
+                if($extension = "jpg" && $extension = "png" && $extension = "jpeg" && $extension = "gif"){
+                    if(count($exploded_profile_picture_name) == 2){
+                        if(move_uploaded_file(htmlspecialchars($_FILES["upload_profile_picture"]["tmp_name"]),  $target_file)){
+                            echo "<script>alert('ВАШАТА СНИМКА Е КАЧЕНА УСПЕШНО!');location.href='index.php';</script>";
+                        }else{
+                            $upload_profile_picture_err = "За съжаление при качването на вашият файл възникна грешка.";
+                        }
                     }else{
-                        $upload_profile_picture_err = "За съжаление при качването на вашият файл възникна грешка.";
+                        $upload_profile_picture_err = "Не се допускат точки в името на файла";
                     }
                 }else{
                     $upload_profile_picture_err = "Позволените файлови разширения са JPG, JPEG, PNG и GIF.";
