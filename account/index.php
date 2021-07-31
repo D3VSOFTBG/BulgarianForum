@@ -16,8 +16,16 @@ include_once("../include/header.php");
 ?>
 
 <div class="text-center border">
-    <h1>Профил</h1>
+    <h1>Акаунт</h1>
     <table>
+        <tr>
+            <td>
+                <p>Потребителско име:</p>
+            </td>
+            <td colspan="2">
+                <strong><?php echo $_SESSION["username"]; ?></strong>
+            </td>
+        </tr>
         <tr>
             <td>
                 <p>Снимка:</p>
@@ -25,13 +33,8 @@ include_once("../include/header.php");
             <td>
                 <strong>...</strong>
             </td>
-        </tr>
-        <tr>
             <td>
-                <p>Потребителско име:</p>
-            </td>
-            <td>
-                <strong><?php echo $_SESSION["username"]; ?></strong>
+                <a href="upload-photo.php"><button>Качи снимка</button></a>
             </td>
         </tr>
         <tr>
@@ -41,9 +44,14 @@ include_once("../include/header.php");
             <td>
                 <strong><?php echo $_SESSION["email"]; ?></strong>
             </td>
+            <td>
+            <a href="change-email.php"><button>Промени имейла</button></a>
+
+            </td>
         </tr>
     </table>
-    <p>Можете да направите промяна от "Настройки".</p>
+    <a href="change-password.php"><button>Промени паролата</button></a>
+    <a href="delete-account.php"><button>Изтрий Акаунта</button></a>
 </div>
 
 <?php

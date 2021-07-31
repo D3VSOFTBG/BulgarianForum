@@ -27,7 +27,7 @@ include_once("config.php");
             echo "<a href='$url/auth/register.php'>&#9940;&nbsp;Регистрация</a>";
             echo "<a href='$url/auth/login.php'>&#128273;&nbsp;Вход</a>";
         }else{
-            echo "<a href='$url/settings/index.php'>&#9881;&nbsp;Настройки</a>";
+            echo "<a href='$url/account/index.php'>&#128373;&nbsp;Акаунт</a>";
         }
         ?>
         <a href="<?php echo $url; ?>/pages/search.php">&#128269;&nbsp;Търси</a>
