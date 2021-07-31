@@ -28,13 +28,13 @@ include_once("../include/header.php");
         </tr>
         <tr>
             <td>
-                <p>Снимка:</p>
+                <p>Профилна снимка:</p>
             </td>
             <td>
                 <strong>...</strong>
             </td>
             <td>
-                <a href="upload-photo.php"><button>Качи снимка</button></a>
+                <a href="upload-profile-picture.php"><button>Качи профилна снимка</button></a>
             </td>
         </tr>
         <tr>
