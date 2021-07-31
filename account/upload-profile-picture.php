@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $end_of_exploded_profile_picture_name = end($exploded_profile_picture_name);
 
         $target_file = $target_dir . $current_of_exploded_profile_picture_name . "." . $end_of_exploded_profile_picture_name;
-        $extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     
         // Check if image file is actual image or fake image
         $check = getimagesize(htmlspecialchars($_FILES["upload_profile_picture"]["tmp_name"]));
@@ -52,10 +52,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($check !== false){
             // Check file size
             if(!(htmlspecialchars($_FILES["upload_profile_picture"]["size"]) > 1000000)){
-                if($extension = "jpg" && $extension = "png" && $extension = "jpeg" && $extension = "gif"){
+                if($file_extension = "jpg" && $file_extension = "png" && $file_extension = "jpeg" && $file_extension = "gif"){
                     if(count($exploded_profile_picture_name) == 2){
                         if(move_uploaded_file(htmlspecialchars($_FILES["upload_profile_picture"]["tmp_name"]),  $target_file)){
-                            echo "<script>alert('ВАШАТА СНИМКА Е КАЧЕНА УСПЕШНО!');location.href='index.php';</script>";
+                            // Prepare an update statement
+                            $sql = "UPDATE users SET profile_picture = :profile_picture WHERE id = :id";
+
+                            if($stmt = $pdo->prepare($sql)){
+                                // Bind variables to the prepared statement as parameters
+                                $stmt->bindParam(":id", $param_id, PDO::PARAM_STR);
+                                $stmt->bindParam(":profile_picture", $param_profile_picture, PDO::PARAM_STR);
+
+                                // Set parameters
+                                $param_id = $_SESSION["id"];
+                                $param_profile_picture = $target_file;
+
+                                // Attempt to execute the prepared statement
+                                if($stmt->execute()){
+                                    echo "<script>alert('ВАШАТА СНИМКА Е КАЧЕНА УСПЕШНО!');location.href='index.php';</script>";
+                                }else{
+                                    echo "Грешка, моля опитайте по късно.";
+                                }
+                            }
                         }else{
                             $upload_profile_picture_err = "За съжаление при качването на вашият файл възникна грешка.";
                         }
