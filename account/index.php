@@ -28,6 +28,14 @@ include_once("../include/header.php");
         </tr>
         <tr>
             <td>
+                Роля:
+            </td>
+            <td colspan="2">
+                Administrator
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <p>Профилна снимка:</p>
             </td>
             <td>

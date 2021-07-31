@@ -32,9 +32,9 @@ if($stmt = $pdo->prepare($sql)){
     }else{
         echo "Грешка, моля опитайте по късно.";
     }
+    // Close statement
+    unset($stmt);
 }
-// Close statement
-unset($stmt);
 // Close connection
 unset($pdo);
 ?>

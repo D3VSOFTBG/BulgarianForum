@@ -76,9 +76,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 }
                                 // Close statement
                                 unset($stmt);
-                                // Close connection
-                                unset($pdo);
                             }
+                            // Close connection
+                            unset($pdo);
                         }else{
                             $upload_profile_picture_err = "За съжаление при качването на вашият файл възникна грешка.";
                         }
