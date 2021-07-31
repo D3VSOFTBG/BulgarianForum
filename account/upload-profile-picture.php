@@ -73,6 +73,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 }else{
                                     echo "Грешка, моля опитайте по късно.";
                                 }
+                                // Close statement
+                                unset($stmt);
+                                // Close connection
+                                unset($pdo);
                             }
                         }else{
                             $upload_profile_picture_err = "За съжаление при качването на вашият файл възникна грешка.";

@@ -31,7 +31,7 @@ include_once("../include/header.php");
                 <p>Профилна снимка:</p>
             </td>
             <td>
-                <strong>...</strong>
+                <img height="100" width="100" src="<?php echo $_SESSION["profile_picture"]; ?>" alt="profile_picture"></strong>
             </td>
             <td>
                 <a href="upload-profile-picture.php"><button>Качи профилна снимка</button></a>
