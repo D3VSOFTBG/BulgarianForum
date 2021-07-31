@@ -69,7 +69,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                                 // Attempt to execute the prepared statement
                                 if($stmt->execute()){
-                                    echo "<script>alert('ВАШАТА СНИМКА Е КАЧЕНА УСПЕШНО!');location.href='index.php';</script>";
+                                    $_SESSION["profile_picture"] = $param_profile_picture;
+                                    echo "<script>alert('ВАШАТА СНИМКА Е ПРОМЕНЕНА УСПЕШНО!');location.href='index.php';</script>";
                                 }else{
                                     echo "Грешка, моля опитайте по късно.";
                                 }

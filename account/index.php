@@ -35,6 +35,7 @@ include_once("../include/header.php");
             </td>
             <td>
                 <a href="upload-profile-picture.php"><button>Качи профилна снимка</button></a>
+                <a href="use-gravatar.php"><button>Използвай Gravatar</button></a>
             </td>
         </tr>
         <tr>
