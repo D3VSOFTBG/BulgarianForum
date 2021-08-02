@@ -37,6 +37,10 @@ include_once("config.php");
         if(empty($_SESSION["username"])){
             echo '<p class="text-center alert">Моля влез или се регистрирай!</p>';
         }else{
-            echo "<p class='text-center alert'>Здравей <strong>" . $_SESSION["username"] . "</strong>, (<a href='$url/auth/logout.php'><strong>ИЗЛЕЗ</strong></a>).</p>";
+            if($_SESSION["email_confirmed"] == 0){
+                echo "<p class='text-center alert'>Здравей <strong>" . $_SESSION["username"] . "</strong>, (<a href='$url/account/confirm-email.php'><strong>ПОТВЪРДЕТЕ ИМЕЙЛА</strong></a>), (<a href='$url/auth/logout.php'><strong>ИЗЛЕЗ</strong></a>).</p>";
+            }else{
+                echo "<p class='text-center alert'>Здравей <strong>" . $_SESSION["username"] . "</strong>, (<a href='$url/auth/logout.php'><strong>ИЗЛЕЗ</strong></a>).</p>";
+            }
         }       
     ?>

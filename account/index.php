@@ -54,8 +54,12 @@ include_once("../include/header.php");
                 <strong><?php echo $_SESSION["email"]; ?></strong>
             </td>
             <td>
-            <a href="change-email.php"><button>Промени имейла</button></a>
-
+                <a href="change-email.php"><button>Промени имейла</button></a>
+                <?php
+                    if($_SESSION["email_confirmed"] == 0){
+                        echo '<a href="confirm-email.php"><button>Потвърдете имейла</button></a>';
+                    }
+                ?>
             </td>
         </tr>
     </table>

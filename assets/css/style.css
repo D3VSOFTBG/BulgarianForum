@@ -131,6 +131,9 @@ input{
 span.error{
     color: red;
 }
+span.success{
+    color: green;
+}
 .refresh-captcha{
     zoom: 2;
     cursor: pointer;

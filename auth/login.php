@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Validate credentials
             if(empty($username_err) && empty($password_err)){
                 // Prepare a select statement
-                $sql = "SELECT id, username, email, password, role, profile_picture FROM users WHERE username = :username";
+                $sql = "SELECT id, username, email, password, role, profile_picture, email_confirmed FROM users WHERE username = :username";
         
                 if($stmt = $pdo->prepare($sql)){
                     // Bind variables to the prepared statement as parameters
@@ -59,9 +59,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 $id = $row["id"];
                                 $username = $row["username"];
                                 $email = $row["email"];
+                                $hashed_password = $row["password"];
                                 $role = $row["role"];
                                 $profile_picture = $row["profile_picture"];
-                                $hashed_password = $row["password"];
+                                $email_confirmed = $row["email_confirmed"];
                                 if(password_verify($password, $hashed_password)){
                                     // Store data in session variables
                                     $_SESSION["loggedin"] = true;
@@ -70,7 +71,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     $_SESSION["email"] = $email;
                                     $_SESSION["role"] = $role;
                                     $_SESSION["profile_picture"] = $profile_picture;
-        
+                                    $_SESSION["email_confirmed"] = $email_confirmed;
+                                    
                                     // Redirect user to index page
                                     header("location: ../index.php");
                                 }else{
@@ -92,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close connection
             unset($pdo);
         }else{
-            $captcha_err = "Грешна капча, моля опитайте отново";
+            $captcha_err = "Грешна капча, моля опитайте отново.";
         }
     }
 }

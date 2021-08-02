@@ -32,10 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $email_err = "Моля въведете вашият имейл.";
             }else{
                 $email = trim(htmlspecialchars($_POST["email"]));
-            }
-
-            // Validate credentials
-            if(empty($email_err)){
+                
                 // Prepare select statement
                 $sql = "SELECT email, username FROM users WHERE email = :email";
 
@@ -73,7 +70,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     $mail->Subject = "$title - Забравена парола";
                                     $mail->isHTML(false);
                                     $mail->Body = <<<EOT
-                                    Username: $username
+                                    Здравей, $username.
                                     Token: $token
                                     EOT;
                                     $mail->send();
@@ -81,9 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 }
                             }
                         }else{
-                            // To prevent abuse
-                            sleep(3);
-                            $sent_message = "Проверете си имейла!";
+                            $email_err = "Въведеният имейл не съществува в нашата система!";
                         }
                     }
                     // Close statement
@@ -93,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close connection
             unset($pdo);
         }else{
-            $captcha_err = "Грешна капча, моля опитайте отново";
+            $captcha_err = "Грешна капча, моля опитайте отново.";
         }
     }
 }
@@ -108,11 +103,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <?php
             if(!empty($sent_message)){
-                echo '<br /><span class="error">'.$sent_message.'</span>';
+                echo '<br /><span class="success">'.$sent_message.'</span>';
             }
         ?>
         <h1>Забравена парола</h1>
         <label for="email">Вашият имейл</label>
+        <?php
+            if(!empty($email_err)){
+                echo '<br /><span class="error">'.$email_err.'</span>';
+            }
+        ?>
         <br />
         <input type="email" id="email" name="email" placeholder="Въведете вашият имейл" required />
         <br />
