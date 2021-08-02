@@ -112,9 +112,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <h1>Забравена парола</h1>
-        <label>Вашият имейл</label>
+        <label for="email">Вашият имейл</label>
         <br />
-        <input type="email" name="email" placeholder="Въведете вашият имейл" required />
+        <input type="email" id="email" name="email" placeholder="Въведете вашият имейл" required />
         <br />
         <?php require("../include/captcha-html.php"); ?>
         <br />

@@ -139,3 +139,6 @@ span.error{
 .border-none{
     border: none;
 }
+img.profile_picture{
+    border: 1px solid white;;
+}

@@ -131,36 +131,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <div class="text-center border">
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <h1>Нулиране на паролата</h1>
-        <label>Вашият имейл</label>
+        <label for="email">Вашият имейл</label>
         <?php
             if(!empty($email_err)){
                 echo '<br /><span class="error">'.$email_err.'</span>';
             }
         ?>
         <br />
-        <input name="email" type="email" placeholder="Вашият имейл" required />
+        <input id="email" name="email" type="email" placeholder="Вашият имейл" required />
         <br />
-        <label>Вашият Тoken</label>
+        <label for="token">Вашият Тoken</label>
         <?php
             if(!empty($token_err)){
                 echo '<br /><span class="error">'.$token_err.'</span>';
             }
         ?>
         <br />
-        <input name="token" type="text" placeholder="Вашият Тoken" required />
+        <input id="token" name="token" type="text" placeholder="Вашият Тoken" required />
         <br />
-        <label>Нова парола</label>
+        <label for="new_password">Нова парола</label>
         <?php
             if(!empty($new_password_err)){
                 echo '<br /><span class="error">'.$new_password_err.'</span>';
             }
         ?>
         <br />
-        <input minlength="8" maxlength="255" name="new_password" type="password" placeholder="Нова парола" required />
+        <input minlength="8" maxlength="255" id="new_password" name="new_password" type="password" placeholder="Нова парола" required />
         <br />
-        <label>Повторете новата парола</label>
+        <label for="confirm_new_password">Повторете новата парола</label>
         <br />
-        <input minlength="8" maxlength="255" name="confirm_new_password" type="password" placeholder="Повторете новата парола" required />
+        <input minlength="8" maxlength="255" id="confirm_new_password" name="confirm_new_password" type="password" placeholder="Повторете новата парола" required />
         <br />
         <?php require("../include/captcha-html.php"); ?>
         <br />

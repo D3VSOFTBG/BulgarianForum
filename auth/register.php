@@ -116,7 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Check input errors before inserting in database
             if(empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)){
                 // Prepare an insert statement
-                $sql = "INSERT INTO users (username, email, password, registered_date) VALUES (:username, :email, :password, :registered_date)";
+                $sql = "INSERT INTO users (username, email, password, registered_date, role, profile_picture) VALUES (:username, :email, :password, :registered_date, :role, :profile_picture)";
 
                 if($stmt = $pdo->prepare($sql)){
                     // Bind variables to the prepared statement as parameters
@@ -124,12 +124,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
                     $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
                     $stmt->bindParam(":registered_date", $param_registered_date, PDO::PARAM_STR);
+                    $stmt->bindParam(":role", $param_role, PDO::PARAM_STR);
+                    $stmt->bindParam(":profile_picture", $param_profile_picture, PDO::PARAM_STR);
 
                     // Set parameters
                     $param_username = $username;
                     $param_email = $email;
                     $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
                     $param_registered_date = date("Y-m-d");
+                    $param_role = "Member";
+                    $param_profile_picture = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email)));
 
                     // Attempt to execute the prepared statement
                     if($stmt->execute()){
@@ -159,7 +163,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="username" type="text" placeholder="Потребителско име" required />
+        <input id="username" name="username" type="text" placeholder="Потребителско име" required />
         <br />
         <label for="email">Имейл</label>
         <?php
@@ -168,7 +172,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input name="email" type="email" placeholder="Имейл" required />
+        <input id="email" name="email" type="email" placeholder="Имейл" required />
         <br />
         <label for="password">Парола</label>
         <?php
@@ -177,7 +181,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input minlength="8" maxlength="255" name="password" type="password" placeholder="Парола" required />
+        <input minlength="8" maxlength="255" id="password" name="password" type="password" placeholder="Парола" required />
         <br />
         <label for="confirm_password">Потвърдете паролата</label>
         <?php
@@ -186,7 +190,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input minlength="8" maxlength="255" name="confirm_password" type="password" placeholder="Потвърдете паролата" required />
+        <input minlength="8" maxlength="255" id="confirm_password" name="confirm_password" type="password" placeholder="Потвърдете паролата" required />
         <br />
         <?php require("../include/captcha-html.php"); ?>
         <br />

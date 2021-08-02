@@ -2,8 +2,22 @@
 // Initialize the session
 session_start();
 
+// Include database file
+require_once("include/db.php");
+
 // Include header file
 include_once("include/header.php");
+
+$registered_users = 0;
+
+// Prepare a select statement
+$sql = "SELECT id from users";
+
+if($stmt = $pdo->prepare($sql)){
+    if($stmt->execute()){
+        $registered_users = $stmt->rowCount();
+    }
+}
 ?>
 <div style="overflow-x: auto;">
     <table>
@@ -46,7 +60,7 @@ include_once("include/header.php");
     <tr>
         <td>1</td>
         <td>1</td>
-        <td>1</td>
+        <td><?php echo $registered_users; ?></td>
     </tr>
 </table>
 <?php

@@ -97,32 +97,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <div class="text-center border">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <h1>Промени имейла</h1>
-        <label>Нов имейл</label>
+        <label for="new_email">Нов имейл</label>
         <?php
             if(!empty($new_email_err)){
                 echo '<br /><span class="error">'.$new_email_err.'</span>';
             }
         ?>
         <br />
-        <input type="email" name="new_email" placeholder="Нов имейл" required />
+        <input type="email" id="new_email" name="new_email" placeholder="Нов имейл" required />
         <br />
-        <label>Потвърдете новият имейл</label>
+        <label for="confirm_new_email">Потвърдете новият имейл</label>
         <?php
             if(!empty($confirm_new_email_err)){
                 echo '<br /><span class="error">'.$confirm_new_email_err.'</span>';
             }
         ?>
         <br />
-        <input type="email" name="confirm_new_email" placeholder="Потвърдете новият имейл" required />
+        <input type="email" id="confirm_new_email" name="confirm_new_email" placeholder="Потвърдете новият имейл" required />
         <br />
-        <label>Вашата парола</label>
+        <label for="password">Вашата парола</label>
         <?php
             if(!empty($password_err)){
                 echo '<br /><span class="error">'.$password_err.'</span>';
             }
         ?>
         <br />
-        <input type="password" name="password" placeholder="Вашата парола" required />
+        <input type="password" id="password" name="password" placeholder="Вашата парола" required />
         <br />
         <a href="index.php"><button type="button">Назад</button></a><button type="submit">Промени</button>
     </form>
