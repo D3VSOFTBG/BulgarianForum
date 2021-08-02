@@ -80,8 +80,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if(!(time() - $row["token_created_time"] < 1800)){
                             $token_err = "Времето ви за използване на този Token е изтекло.";
                         }else{
-                            $pdo->prepare("UPDATE users SET token = ?, token_created_time = ? WHERE email = ?")->execute([NULL, NULL, $email]);
-                            $_SESSION["email_confirmed"] = $row["email_confirmed"];
+                            $_SESSION["email_confirmed"] = 1;
+                            $pdo->prepare("UPDATE users SET email_confirmed = ?, token = ?, token_created_time = ? WHERE email = ?")->execute([$_SESSION["email_confirmed"] ,NULL, NULL, $email]);
                             echo "<script>alert('ВАШИЯТ ИМЕЙЛ Е ПОТВЪРДЕН УСПЕШНО!');location.href='index.php';</script>";
                         }
                     }
