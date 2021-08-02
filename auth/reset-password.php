@@ -124,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 <div class="text-center border">
     <p>Имате 30 минути за да нулирате вашата парола с вашият Token,<br />ако не успеете трябва отново да натиснете
-        забравена парола<br /> за да ви изпратим нов Token.</p>
+        "забравена парола"<br /> за да ви изпратим нов Token.</p>
     <a href="forgot-password.php"><button>Забравена парола</button></a>
 </div>
 <br />
