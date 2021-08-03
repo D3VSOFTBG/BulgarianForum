@@ -77,12 +77,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":id", $param_id, PDO::PARAM_STR);
 
             // Set parameters
-            $param_email = trim(htmlspecialchars($_POST["new_email"]));            $param_email = trim(htmlspecialchars($_POST["new_email"]));
+            $param_email = trim(htmlspecialchars($_POST["new_email"]));
             $param_id = trim(htmlspecialchars($_SESSION["id"]));
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                echo "<script>alert('ВАШИЯТ ИМЕЙЛ Е СМЕНЕН УСПЕШНО!');location.href='index.php';</script>";
+                $_SESSION["email_confirmed"] = 0;
+                $_SESSION["email"] = $param_email;
+                $pdo->prepare("UPDATE users SET email_confirmed = ? WHERE email = ?")->execute([$_SESSION["email_confirmed"], $param_email]);
+                echo "<script>alert('ВАШИЯТ ИМЕЙЛ Е ПРОМЕНЕН УСПЕШНО!');location.href='index.php';</script>";
             }else{
                 echo "Грешка, моля опитайте по късно.";
             }

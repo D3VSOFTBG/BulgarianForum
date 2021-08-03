@@ -31,9 +31,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim(htmlspecialchars($_POST["username"])))){
                 $username_err = "Потребителското име единствено може да съдържа букви, цифри и долни черти.";
             }elseif(strlen(trim(htmlspecialchars($_POST["username"]))) <= 5){
-                $username_err = "Дължината на потребителското име трябва да е най-малко 5 символа.";
+                $username_err = "Дължината на потребителското име може да е най-малко 5 символа.";
             }elseif(strlen(trim(htmlspecialchars($_POST["username"]))) >= 50){
-                $username_err = "Дължината на потребителското име трябва да е най-много 50 символа.";
+                $username_err = "Дължината на потребителското име може да е най-много 50 символа.";
             }else{
                 // Prepare a select statement
                 $sql = "SELECT username FROM users WHERE username = :username";

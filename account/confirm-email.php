@@ -115,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         ?>
         <br />
-        <input type="text" id="token" name="token" placeholder="Вашият Тoken">
+        <input type="text" id="token" name="token" placeholder="Вашият Тoken" required>
         <br />
         <button type="submit">Потвърди</button>
     </form>
