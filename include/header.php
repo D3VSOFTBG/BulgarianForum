@@ -28,6 +28,9 @@ include_once("config.php");
             echo "<a href='$url/auth/login.php'>&#128273;&nbsp;Вход</a>";
         }else{
             echo "<a href='$url/account/index.php'>&#128373;&nbsp;Акаунт</a>";
+            if($_SESSION["role"] == "Administrator"){
+                echo "<a href='$url/admin/index.php'>&#128373;&nbsp;Администрация</a>";
+            }
         }
         ?>
         <a href="<?php echo $url; ?>/pages/search.php">&#128269;&nbsp;Търси</a>

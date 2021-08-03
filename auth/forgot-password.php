@@ -94,8 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 <div class="text-center border">
-    <p>Ще ви изпратим Token ако имейлът ви съществува в нашата система.<br /> Ако получите вашият Token, натиснете
-        долният бутон.</p>
+    <p>1. Ще ви изпратим Token ако имейлът ви съществува в нашата система.</p>
     <a href="reset-password.php"><button type="button">Нулиране на парола</button></a>
 </div>
 <br />

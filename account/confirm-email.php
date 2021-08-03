@@ -99,8 +99,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 <div class="text-center border">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <p>Имате 30 минути за да потвърдите имейла си с вашият Token,<br />ако не успеете трябва да натиснете
-            "изпратете Token за потвърждение"<br /> за да ви изпратим нов Token.</p>
+        <p>Имате 30 минути за да потвърдите имейла си с вашият Token</p>
         <button name="send_token" type="submit">Изпратете Token за потвърждение</button></a>
     </form>
 </div>
