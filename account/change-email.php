@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
                 $_SESSION["email_confirmed"] = 0;
                 $_SESSION["email"] = $param_email;
-                $pdo->prepare("UPDATE users SET email_confirmed = ? WHERE email = ?")->execute([$_SESSION["email_confirmed"], $param_email]);
+                $pdo->prepare("UPDATE users SET email_confirmed = ?, token = ?, token_created_time = ? WHERE email = ?")->execute([$_SESSION["email_confirmed"], NULL, NULL, $new_email]);
                 echo "<script>alert('ВАШИЯТ ИМЕЙЛ Е ПРОМЕНЕН УСПЕШНО!');location.href='index.php';</script>";
             }else{
                 echo "Грешка, моля опитайте по късно.";
