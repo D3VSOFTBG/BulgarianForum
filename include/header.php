@@ -29,7 +29,7 @@ include_once("config.php");
         }else{
             echo "<a href='$url/account/index.php'>&#128373;&nbsp;Акаунт</a>";
             if($_SESSION["role"] == "Administrator"){
-                echo "<a href='$url/admin/index.php'>&#128373;&nbsp;Администрация</a>";
+                echo "<a href='$url/admin/index.php'>&#128296;&nbsp;Администрация</a>";
             }
         }
         ?>

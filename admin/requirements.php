@@ -12,18 +12,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         exit;
     }
 }
-
-// Include database file
-require_once("../include/db.php");
-
-// Include header file
-include_once("../include/header.php");
 ?>
-
-<div class="text-center border">
-    <h1>Администрация</h1>
-    <a href="requirements.php"><button>Изисквания</button></a>
-</div>
 
 <?php
 include_once("../include/footer.php");
