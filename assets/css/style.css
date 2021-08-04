@@ -145,3 +145,6 @@ span.success{
 img.profile_picture{
     border: 1px solid white;;
 }
+div.responsive{
+    overflow-x: auto;
+}

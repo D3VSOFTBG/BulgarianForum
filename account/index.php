@@ -17,6 +17,7 @@ include_once("../include/header.php");
 
 <div class="text-center border">
     <h1>Акаунт</h1>
+    <div class="responsive">
     <table>
         <tr>
             <td>
@@ -42,23 +43,17 @@ include_once("../include/header.php");
                 <img class="profile_picture" height="80" width="80" src="<?php echo $_SESSION["profile_picture"]; ?>"
                     alt="profile_picture">
                 <br />
-                <a href="upload-profile-picture.php"><button>
-                <?php
+                <a href="upload-profile-picture.php"><button><?php
                 if(!str_contains($_SESSION["profile_picture"], "gravatar")){
-                    echo "&#9989;";
+                    echo "&#9989;&nbsp;";
                 }
-                ?>    
-                Качи профилна снимка
-                </button></a>
+                ?>Качи профилна снимка</button></a>
                 <br />
-                <a href="use-gravatar.php"><button>
-                <?php
+                <a href="use-gravatar.php"><button><?php
                 if(str_contains($_SESSION["profile_picture"], "gravatar")){
-                    echo "&#9989;";
+                    echo "&#9989;&nbsp;";
                 }
-                ?>
-                Използвай Gravatar
-                </button></a>
+                ?>Използвай Gravatar</button></a>
             </td>
         </tr>
         <tr>
@@ -77,9 +72,9 @@ include_once("../include/header.php");
             </td>
         </tr>
     </table>
+    </div>
     <a href="change-password.php"><button>Промени паролата</button></a>
     <a href="delete-account.php"><button>Изтрий Акаунта</button></a>
-
 </div>
 
 <?php

@@ -19,7 +19,7 @@ if($stmt = $pdo->prepare($sql)){
     }
 }
 ?>
-<div style="overflow-x: auto;">
+<div class="responsive">
     <table>
         <tr>
             <!--Forum Name-->
