@@ -42,9 +42,23 @@ include_once("../include/header.php");
                 <img class="profile_picture" height="80" width="80" src="<?php echo $_SESSION["profile_picture"]; ?>"
                     alt="profile_picture">
                 <br />
-                <a href="upload-profile-picture.php"><button>Качи профилна снимка</button></a>
+                <a href="upload-profile-picture.php"><button>
+                <?php
+                if(!str_contains($_SESSION["profile_picture"], "gravatar")){
+                    echo "&#9989;";
+                }
+                ?>    
+                Качи профилна снимка
+                </button></a>
                 <br />
-                <a href="use-gravatar.php"><button>Използвай Gravatar</button></a>
+                <a href="use-gravatar.php"><button>
+                <?php
+                if(str_contains($_SESSION["profile_picture"], "gravatar")){
+                    echo "&#9989;";
+                }
+                ?>
+                Използвай Gravatar
+                </button></a>
             </td>
         </tr>
         <tr>
