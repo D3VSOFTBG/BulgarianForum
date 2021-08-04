@@ -21,9 +21,23 @@ include_once("../include/header.php");
 ?>
 
 <div class="text-center border">
-    <h1>Администрация</h1>
-    <a href="categories.php"><button>Категории</button></a>
-    <a href="requirements.php"><button>Изисквания</button></a>
+    <h1>Категории</h1>
+    <div class="responsive">
+    <table>
+        <tr>
+            <td>
+                Име_на_категория
+            </td>
+            <td>
+                <button>Редактирай</button>
+            </td>
+            <td>
+                <button>Изтрий</button>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <a href="index.php"><button>Назад</button></a><button>Създай категория</button>
 </div>
 
 <?php
