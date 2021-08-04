@@ -24,7 +24,7 @@ if($stmt = $pdo->prepare($sql)){
         <tr>
             <!--Forum Name-->
             <th colspan="3">
-                <h1>Име на форум</h1>
+                <h1><a href="#">Име на форум</a></h1>
             </th>
             <th>
                 <h1><a href="#">[-]</a></h1>
