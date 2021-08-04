@@ -57,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             EOT;
             $mail->send();
         }
-        echo "<script>alert('ПРОВЕРЕТЕ СИ ИМЕЙЛА!');location.href='confirm-email.php';</script>";
+        echo "<script>alert('ПРОВЕРЕТЕ СИ ИМЕЙЛА!');window.location.href = window.location.href;</script>";
     }else{
         // Prepare a select statement
         $sql = "SELECT token, token_created_time, email_confirmed FROM users WHERE email = :email";
