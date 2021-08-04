@@ -22,7 +22,7 @@ include_once("../include/header.php");
             <td>
                 <p>Потребителско име:</p>
             </td>
-            <td colspan="2">
+            <td>
                 <strong><?php echo $_SESSION["username"]; ?></strong>
             </td>
         </tr>
@@ -30,7 +30,7 @@ include_once("../include/header.php");
             <td>
                 Роля:
             </td>
-            <td colspan="2">
+            <td>
                 <?php echo $_SESSION["role"]; ?>
             </td>
         </tr>
@@ -39,10 +39,11 @@ include_once("../include/header.php");
                 <p>Профилна снимка:</p>
             </td>
             <td>
-                <img class="profile_picture" height="80" width="80" src="<?php echo $_SESSION["profile_picture"]; ?>" alt="profile_picture"></strong>
-            </td>
-            <td>
+                <img class="profile_picture" height="80" width="80" src="<?php echo $_SESSION["profile_picture"]; ?>"
+                    alt="profile_picture">
+                <br />
                 <a href="upload-profile-picture.php"><button>Качи профилна снимка</button></a>
+                <br />
                 <a href="use-gravatar.php"><button>Използвай Gravatar</button></a>
             </td>
         </tr>
@@ -52,19 +53,19 @@ include_once("../include/header.php");
             </td>
             <td>
                 <strong><?php echo $_SESSION["email"]; ?></strong>
-            </td>
-            <td>
+                <br />
                 <a href="change-email.php"><button>Промени имейла</button></a>
                 <?php
-                    if($_SESSION["email_confirmed"] == 0){
-                        echo '<a href="confirm-email.php"><button>Потвърдете имейла</button></a>';
-                    }
+                if($_SESSION["email_confirmed"] == 0){
+                    echo '<a href="confirm-email.php"><button>Потвърдете имейла</button></a>';
+                }
                 ?>
             </td>
         </tr>
     </table>
     <a href="change-password.php"><button>Промени паролата</button></a>
     <a href="delete-account.php"><button>Изтрий Акаунта</button></a>
+
 </div>
 
 <?php
