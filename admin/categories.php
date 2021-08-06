@@ -20,7 +20,7 @@ require_once("../include/db.php");
 include_once("../include/header.php");
 
 // Define variables and initialize with empty values
-$categories = "";
+$categories_err = "";
 
 // Prepare a select statement
 $sql = "SELECT category_name FROM categories";
@@ -28,11 +28,19 @@ $sql = "SELECT category_name FROM categories";
 if($stmt = $pdo->prepare($sql)){
     if($stmt->execute()){
         $result = $stmt->fetchAll();
+        if($stmt->rowCount() == 0){
+            $categories_err = "Няма категории.";
+        }
     }
 }
 ?>
 
 <div class="text-center border">
+    <?php
+        if(!empty($categories_err)){
+            echo '<br /><span class="error">'.$categories_err.'</span>';
+        }
+    ?>
     <h1>Категории</h1>
     <div class="responsive">
     <table>
