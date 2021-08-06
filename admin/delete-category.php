@@ -36,6 +36,8 @@ if(isset($_GET["id"])){
         // Close statement
         unset($stmt);
     }
+}else{
+    echo "ГРЕШКА!";
 }
 // Close connection
 unset($pdo);

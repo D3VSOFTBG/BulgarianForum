@@ -52,7 +52,7 @@ if($stmt = $pdo->prepare($sql)){
                 <?php echo $row["category_name"]; ?>
             </td>
             <td>
-                <button>Редактирай</button>
+                <a href="edit-category.php?id=<?php echo $row["id"]; ?>"><button>Редактирай</button></a>
             </td>
             <td>
                 <a href="delete-category.php?id=<?php echo $row["id"]; ?>"><button>Изтрий</button></a>
