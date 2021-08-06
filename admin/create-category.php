@@ -21,23 +21,14 @@ include_once("../include/header.php");
 ?>
 
 <div class="text-center border">
-    <h1>Категории</h1>
-    <div class="responsive">
-    <table>
-        <tr>
-            <td>
-                Име_на_категория
-            </td>
-            <td>
-                <button>Редактирай</button>
-            </td>
-            <td>
-                <button>Изтрий</button>
-            </td>
-        </tr>
-    </table>
-    </div>
-    <a href="index.php"><button>Назад</button></a><a href="create-category.php"><button>Създай категория</button></a>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <h1>Създай категория</h1>
+        <label>Име на категория</label>
+        <br />
+        <input type="text" name="category_name" placeholder="Име на категория" required>
+        <br />
+        <a href="index.php"><button type="button">Назад</button></a><button type="submit">Създай категория</button>
+    </form>
 </div>
 
 <?php

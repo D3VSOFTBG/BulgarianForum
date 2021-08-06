@@ -22,20 +22,20 @@ if($stmt = $pdo->prepare($sql)){
 <div class="responsive">
     <table>
         <tr>
-            <!--Forum Name-->
+            <!--Category (Name/Description)-->
             <th colspan="3">
-                <h1><a href="#">Име на форум</a></h1>
+                <p>Име на категория</p>
             </th>
             <th>
-                <h1><a href="#">[-]</a></h1>
+                <p><a href="#">&#10133;&#10134;</a></p>
             </th>
         </tr>
         <tr>
             <!--New posts-->
             <td>X</td>
-            <!--Category (Name/Description)-->
+            <!--Forum Name-->
             <td>
-                <p><strong><a href="#">Име на категория</a></strong></p>
+                <p><strong><a href="#">Име на форум</a></strong></p>
             </td>
             <!--Statistics (Topics/Posts)-->
             <td>
