@@ -23,7 +23,7 @@ include_once("../include/header.php");
 $categories_err = "";
 
 // Prepare a select statement
-$sql = "SELECT category_name FROM categories";
+$sql = "SELECT id, category_name FROM categories";
 
 if($stmt = $pdo->prepare($sql)){
     if($stmt->execute()){
@@ -55,7 +55,7 @@ if($stmt = $pdo->prepare($sql)){
                 <button>Редактирай</button>
             </td>
             <td>
-                <button>Изтрий</button>
+                <a href="delete-category.php?id=<?php echo $row["id"]; ?>"><button>Изтрий</button></a>
             </td>
         </tr>
         <?php
