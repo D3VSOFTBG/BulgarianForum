@@ -24,37 +24,7 @@ $category_name = "";
 $category_name_err = "";
 $error = false;
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(empty(trim(htmlspecialchars($_POST["category_name"])))){
-        $category_name_err = "Моля въведете име на категория.";
-    }else{
-        // Prepare a select statement
-        $sql = "SELECT category_name FROM categories WHERE category_name = :category_name";
-
-        if($stmt = $pdo->prepare($sql)){
-            // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":category_name", $param_category_name, PDO::PARAM_STR);
-
-            // Set parameters
-            $param_category_name = trim(htmlspecialchars($_POST["category_name"]));
-
-            // Attempt to execute the prepared statement
-            if($stmt->execute()){
-                if($stmt->rowCount()){
-                    $category_name_err = "Тази категория вече съществува.";
-                }else{
-                    $category_name = trim(htmlspecialchars($_POST["category_name"]));
-                }
-            }else{
-                echo "<h1 class='text-center'>Грешка, моля опитайте по късно</h1>";
-            }
-            // Close statement
-            unset($stmt);
-        }
-    }
-}
-
-
+if($_SERVER["REQUEST_METHOD"] == "GET"){
 // Select statement
 $sql = "SELECT category_name FROM categories WHERE id = :id";
 
@@ -63,7 +33,7 @@ if($stmt = $pdo->prepare($sql)){
     $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
 
     // Set parameters
-    $param_id = trim(htmlspecialchars($_GET["id"]));
+    $param_id = trim(htmlspecialchars(@$_GET["id"]));
 
     // Attempt to execute the prepared statement
     if($stmt->execute()){
@@ -80,6 +50,42 @@ if($stmt = $pdo->prepare($sql)){
     }
     // Close statement
     unset($stmt);
+}
+
+    if(empty(trim(htmlspecialchars($_POST["category_name"])))){
+        $category_name_err = "Моля въведете име на категория.";
+    }else{
+        // Prepare a select statement
+        $sql = "SELECT category_name, id FROM categories WHERE category_name = :category_name";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":category_name", $param_category_name, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_category_name = trim(htmlspecialchars($_POST["category_name"]));
+
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                if($stmt->rowCount()){
+                    $category_name_err = "Тази категория вече съществува.";
+                }else{
+                    if($row = $stmt->fetch()){
+                        $id = $row["id"];
+                        $category_name = trim(htmlspecialchars($_POST["category_name"]));
+                        // Prepare an update statement
+                        $sql = "UPDATE categories SET category_name = :category_name WHERE id = :id";
+                        $pdo->prepare($sql)->execute([$category_name, $id]);
+                    } 
+                }
+            }else{
+                echo "<h1 class='text-center'>Грешка, моля опитайте по късно</h1>";
+            }
+            // Close statement
+            unset($stmt);
+        }
+    }
 }
 ?>
 
