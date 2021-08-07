@@ -91,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br />
         <input type="text" id="category_name" name="category_name" placeholder="Име на категория" required>
         <br />
-        <a href="categories.php"><button type="button">Назад</button></a><button type="submit">Създай категория</button>
+        <a href="categories.php"><button type="button">Назад</button></a><button type="submit">Създай</button>
     </form>
 </div>
 

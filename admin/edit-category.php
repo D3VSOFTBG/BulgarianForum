@@ -20,9 +20,29 @@ require_once("../include/db.php");
 include_once("../include/header.php");
 
 if(isset($_GET["id"])){
+    // Select statement
+    $sql = "SELECT category_name FROM categories WHERE id = :id";
 
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+
+        // Set parameters
+        $param_id = trim(htmlspecialchars($_GET["id"]));
+
+        // Attempt to execute the prepared statement
+    }
+?>
+
+<div class="text-center border">
+    <h1>Редактирай категория</h1>
+    <input type="text" id="category_name" name="category_name" placeholder="Име на категория" required>
+    <a href="categories.php"><button type="button">Назад</button></a><button type="submit">Редактирай</button>
+</div>
+
+<?php
 }else{
-    echo "ГРЕШКА!";
+    echo "<h1 class='text-center'>ГРЕШКА!</h1>";
 }
-
+include_once("../include/footer.php");
 ?>
