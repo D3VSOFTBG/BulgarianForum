@@ -19,6 +19,10 @@ require_once("../include/db.php");
 // Include header file
 include_once("../include/header.php");
 
+// Define variables and initialize with empty values
+$category_name = "";
+$error = false;
+
 if(isset($_GET["id"])){
     // Select statement
     $sql = "SELECT category_name FROM categories WHERE id = :id";
@@ -31,18 +35,40 @@ if(isset($_GET["id"])){
         $param_id = trim(htmlspecialchars($_GET["id"]));
 
         // Attempt to execute the prepared statement
+        if($stmt->execute()){
+            if($stmt->rowCount() != 0){
+                if($row = $stmt->fetch()){
+                    $category_name = $row["category_name"];
+                }
+            }else{
+                echo "<h1 class='text-center'>Категорията несъществува.</h1>";
+                $error = true;
+            }
+        }else{
+            echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
+        }
+        // Close statement
+        unset($stmt);
     }
 ?>
 
+<?php
+if(!$error){
+?>
 <div class="text-center border">
     <h1>Редактирай категория</h1>
-    <input type="text" id="category_name" name="category_name" placeholder="Име на категория" required>
+    <input type="text" id="category_name" name="category_name" placeholder="Име на категория" value="<?php echo $category_name; ?>" required>
+    <br />
     <a href="categories.php"><button type="button">Назад</button></a><button type="submit">Редактирай</button>
 </div>
+<?php
+}
+?>
+
 
 <?php
 }else{
-    echo "<h1 class='text-center'>ГРЕШКА!</h1>";
+    echo "Грешка!";
 }
 include_once("../include/footer.php");
 ?>

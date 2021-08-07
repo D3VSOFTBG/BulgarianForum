@@ -29,8 +29,10 @@ if($stmt = $pdo->prepare($sql)){
     if($stmt->execute()){
         $result = $stmt->fetchAll();
         if($stmt->rowCount() == 0){
-            $categories_err = "Няма категории.";
+            $categories_err = "Няма намерени категории.";
         }
+    }else{
+        echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
     }
 }
 ?>

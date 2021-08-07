@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                 }
             }else{
-                echo "Грешка, моля опитайте по късно.";
+                echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
             }
             // Close statement
             unset($stmt);

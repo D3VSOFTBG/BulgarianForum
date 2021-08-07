@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             }
                         }
                     }else{
-                        echo "Грешка, моля опитайте по късно.";
+                        echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
                     }
                     // Close statement
                     unset($stmt);
@@ -108,7 +108,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $pdo->prepare("UPDATE users SET token = ?, token_created_time = ? WHERE email = ?")->execute([NULL, NULL, $email]);
                         echo "<script>alert('ВАШАТА ПАРОЛА Е НУЛИРАНА УСПЕШНО!');location.href='login.php';</script>";
                     }else{
-                        echo "Грешка, моля опитайте по късно.";
+                        echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
                     }
                     // Close statement
                     unset($stmt);

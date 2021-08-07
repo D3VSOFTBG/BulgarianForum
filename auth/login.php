@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $login_err = "Невалидно потребителско име или парола.";
                         }
                     }else{
-                        echo "Грешка, моля опитайте по късно.";
+                        echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
                     }
                     // Close statement
                     unset($stmt);

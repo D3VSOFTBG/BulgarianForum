@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $username = trim(htmlspecialchars($_POST["username"]));
                         }
                     }else{
-                        echo "Грешка, моля опитайте по късно.";
+                        echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
                     }
                     // Close statement
                     unset($stmt);
@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $email = trim(htmlspecialchars($_POST["email"]));
                         }
                     }else{
-                        echo "Грешка, моля опитайте по късно.";
+                        echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
                     }
                     // Close statement
                     unset($stmt);
@@ -139,7 +139,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if($stmt->execute()){
                         echo "<script>alert('ВИЕ СЕ РЕГИСТРИРАХТЕ УСПЕШНО!');location.href='login.php';</script>";
                     }else{
-                        echo "Грешка, моля опитайте по късно.";
+                        echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
                     }
                     // Close statement
                     unset($stmt);

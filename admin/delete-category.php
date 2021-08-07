@@ -31,13 +31,13 @@ if(isset($_GET["id"])){
         if($stmt->execute()){
             echo "<script>alert('КАТЕГОРИЯТА Е ИЗТРИТА УСПЕШНО!');window.history.back();</script>";
         }else{
-            echo "Грешка, моля опитайте по късно";
+            echo "<h1 class='text-center'>Грешка, моля опитайте по късно</h1>";
         }
         // Close statement
         unset($stmt);
     }
 }else{
-    echo "<h1 class='text-center'>ГРЕШКА!</h1>";
+    echo "<h1 class='text-center'>Грешка!</h1>";
 }
 // Close connection
 unset($pdo);

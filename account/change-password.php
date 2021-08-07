@@ -67,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
                 echo "<script>alert('ВАШАТА ПАРОЛА Е ПРОМЕНЕНА УСПЕШНО!');location.href='index.php';</script>";
             }else{
-                echo "Грешка, моля опитайте по късно.";
+                echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
             }
             // Close statement
             unset($stmt);

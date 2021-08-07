@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $category_name = trim(htmlspecialchars($_POST["category_name"]));
                 }
             }else{
-                echo "Грешка, моля опитайте по късно";
+                echo "<h1 class='text-center'>Грешка, моля опитайте по късно</h1>";
             }
             // Close statement
             unset($stmt);
@@ -67,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
                 echo "<script>alert('КАТЕГОРИЯТА Е СЪЗДАДЕНА УСПЕШНО!');</script>";
             }else{
-                echo "Грешка, моля опитайте по късно.";
+                echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
             }
             // Close statement
             unset($stmt);

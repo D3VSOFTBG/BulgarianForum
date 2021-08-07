@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $new_email = trim(htmlspecialchars($_POST["new_email"]));
                 }
             }else{
-                echo "Грешка, моля опитайте по късно.";
+                echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
             }
             // Close statement
             unset($stmt);
@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $pdo->prepare("UPDATE users SET email_confirmed = ?, token = ?, token_created_time = ? WHERE email = ?")->execute([$_SESSION["email_confirmed"], NULL, NULL, $new_email]);
                 echo "<script>alert('ВАШИЯТ ИМЕЙЛ Е ПРОМЕНЕН УСПЕШНО!');location.href='index.php';</script>";
             }else{
-                echo "Грешка, моля опитайте по късно.";
+                echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
             }
             // Close statement
             unset($stmt);

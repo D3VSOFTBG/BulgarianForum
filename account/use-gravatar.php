@@ -30,7 +30,7 @@ if($stmt = $pdo->prepare($sql)){
         $_SESSION["profile_picture"] = $param_profile_picture;
         echo "<script>alert('ВАШАТА СНИМКА Е ПРОМЕНЕНА УСПЕШНО!');location.href='index.php';</script>";
     }else{
-        echo "Грешка, моля опитайте по късно.";
+        echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
     }
     // Close statement
     unset($stmt);
