@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         unset($stmt);
     }
     if(isset($_GET["edit"])){
-        if(empty(trim(htmlspecialchars(@$_GET["category_name"])))){
+        if(empty(trim(htmlspecialchars($_GET["category_name"])))){
             $category_name_err = "Моля въведете име на категория.";
         }else{
             // Prepare a select statement
