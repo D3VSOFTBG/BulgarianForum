@@ -52,6 +52,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         // Close statement
         unset($stmt);
     }
+
+    // Submit button
     if(isset($_GET["edit"])){
         if(empty(trim(htmlspecialchars($_GET["category_name"])))){
             $category_name_err = "Моля въведете име на категория.";
@@ -82,8 +84,12 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
                 }else{
                     echo "<h1 class='text-center'>Грешка, моля опитайте по късно</h1>";
                 }
+                // Close statement
+                unset($stmt);
             }
         }
+        // Close connection
+        unset($pdo);
     }
 }
 ?>
