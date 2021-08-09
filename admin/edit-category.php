@@ -20,13 +20,40 @@ require_once("../include/db.php");
 include_once("../include/header.php");
 
 // Define variables and initialize with empty values
-$category_name = "";
+$category_name_in_db = "";
 $category_name_err = "";
 $error = false;
 $id = trim(htmlspecialchars((int)$_GET["id"]));
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(empty(trim(htmlspecialchars($_POST["category_name"])))){
+if($_SERVER["REQUEST_METHOD"] == "GET"){
+    // Select statement
+    $sql = "SELECT category_name FROM categories WHERE id = :id";
+
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+
+        // Set parameters
+        $param_id = $id;
+
+        // Attempt to execute the prepared statement
+        if($stmt->execute()){
+            if($stmt->rowCount() != 0){
+                if($row = $stmt->fetch()){
+                    $category_name_in_db = $row["category_name"];
+                }
+            }else{
+                $error = true;
+                echo "<h1 class='text-center'>Категорията несъществува.</h1>";
+            }
+        }else{
+            echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
+        }
+        // Close statement
+        unset($stmt);
+    }
+    
+    if(empty(trim(htmlspecialchars(@$_GET["category_name"])))){
         $category_name_err = "Моля въведете име на категория.";
     }else{
         // Prepare a select statement
@@ -37,52 +64,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":category_name", $param_category_name, PDO::PARAM_STR);
     
             // Set parameters
-            $param_category_name = trim(htmlspecialchars($_POST["category_name"]));
+            $param_category_name = trim(htmlspecialchars($_GET["category_name"]));
     
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
-                    $category_name_err = "Тази категория вече съществува.";
-                    $edit_category_id = $_SESSION["edit-category-id"];
-                    header("location: edit-category.php?id=$edit_category_id");
+                    if($category_name_in_db == $param_category_name){
+                        $category_name_err = "Написали сте старото име на категорията."; 
                     }else{
-                        echo "<script>alert('КАТЕГОРИЯТА Е ПРОМЕНЕНА УСПЕШНО!');window.history.back();</script>";
-                        $sql = "UPDATE categories SET category_name = ? WHERE id = ?";
-                        $pdo->prepare($sql)->execute([$param_category_name, $edit_category_id]);
+                        $category_name_err = "Тази категория вече съществува.";
                     }
                 }else{
-                    echo "<h1 class='text-center'>Грешка, моля опитайте по късно</h1>";
+                    echo "<script>alert('КАТЕГОРИЯТА Е ПРОМЕНЕНА УСПЕШНО!');</script>";
+                    $sql = "UPDATE categories SET category_name = ? WHERE id = ?";
+                    $pdo->prepare($sql)->execute([$param_category_name, $id]);
                 }
+            }else{
+                echo "<h1 class='text-center'>Грешка, моля опитайте по късно</h1>";
             }
         }
-    }else{
-        // Select statement
-$sql = "SELECT category_name FROM categories WHERE id = :id";
-
-if($stmt = $pdo->prepare($sql)){
-    // Bind variables to the prepared statement as parameters
-    $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
-
-    // Set parameters
-    $param_id = $id;
-
-    // Attempt to execute the prepared statement
-    if($stmt->execute()){
-        if($stmt->rowCount() != 0){
-            if($row = $stmt->fetch()){
-                $category_name = $row["category_name"];
-                $_SESSION["edit-category-id"] = $id;
-            }
-        }else{
-            $error = true;
-            echo "<h1 class='text-center'>Категорията несъществува.</h1>";
-        }
-    }else{
-        echo "<h1 class='text-center'>Грешка, моля опитайте по късно.</h1>";
     }
-    // Close statement
-    unset($stmt);
-}
 }
 ?>
 
@@ -90,8 +91,9 @@ if($stmt = $pdo->prepare($sql)){
 if(!$error){
 ?>
 <div class="text-center border">
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
         <h1>Редактирай категория</h1>
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
         <label for="category_name">Име на категория</label>
         <?php
             if(!empty($category_name_err)){
@@ -100,7 +102,7 @@ if(!$error){
         ?>
         <br />
         <input type="text" id="category_name" name="category_name" placeholder="Име на категория"
-            value="<?php echo $category_name; ?>" required>
+            value="<?php echo $category_name_in_db; ?>" required>
         <br />
         <a href="categories.php"><button type="button">Назад</button></a><button type="submit">Редактирай</button>
     </form>
